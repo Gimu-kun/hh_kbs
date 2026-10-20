@@ -1,0 +1,226 @@
+{
+  "items": [
+    {
+      "id": "balance.intro",
+      "problem": "balance",
+      "description": "Nhắc lại phương trình đề bài",
+      "content": "Viết phương trình chưa cân bằng: {equation}"
+    },
+    {
+      "id": "balance.composition_header",
+      "problem": "balance",
+      "description": "Mở đầu bước phân tích công thức",
+      "content": "Phân tích số nguyên tử của từng nguyên tố trong mỗi chất."
+    },
+    {
+      "id": "balance.composition_item",
+      "problem": "balance",
+      "description": "Một chất sau khi phân tích",
+      "content": "- {formula}: {atoms}"
+    },
+    {
+      "id": "balance.unknowns",
+      "problem": "balance",
+      "description": "Đặt ẩn hệ số",
+      "content": "Đặt hệ số chưa biết cho từng chất: {equation}"
+    },
+    {
+      "id": "balance.system_header",
+      "problem": "balance",
+      "description": "Mở đầu hệ bảo toàn",
+      "content": "Lập hệ phương trình bảo toàn nguyên tố."
+    },
+    {
+      "id": "balance.system_item",
+      "problem": "balance",
+      "description": "Một phương trình bảo toàn",
+      "content": "- {element}: {equation}"
+    },
+    {
+      "id": "balance.solve_header",
+      "problem": "balance",
+      "description": "Mở đầu bước giải hệ",
+      "content": "Giải hệ để tìm bộ hệ số nguyên dương nhỏ nhất."
+    },
+    {
+      "id": "balance.choose_free",
+      "problem": "balance",
+      "description": "Chọn chất làm mốc",
+      "content": "Chọn hệ số của {formula} = {value} vì {reason}."
+    },
+    {
+      "id": "balance.conserve",
+      "problem": "balance",
+      "description": "Suy một hệ số từ một nguyên tố",
+      "content": "Bảo toàn {element}: {equation} ⇒ hệ số của {formula} = {value}."
+    },
+    {
+      "id": "balance.scale",
+      "problem": "balance",
+      "description": "Quy đồng mẫu số",
+      "content": "Nhân tất cả hệ số với {factor} để được số nguyên: {coefficients}."
+    },
+    {
+      "id": "balance.gcd_keep",
+      "problem": "balance",
+      "description": "Bộ hệ số đã tối giản",
+      "content": "Ước chung lớn nhất của các hệ số là {gcd}, bộ hệ số đã tối giản."
+    },
+    {
+      "id": "balance.gcd_reduce",
+      "problem": "balance",
+      "description": "Rút gọn theo ước chung",
+      "content": "Chia mọi hệ số cho ước chung lớn nhất {gcd} để rút gọn."
+    },
+    {
+      "id": "balance.assign",
+      "problem": "balance",
+      "description": "Gán hệ số khi không giải tuần tự được",
+      "content": "Hệ số của {formula} = {value}."
+    },
+    {
+      "id": "balance.normalized",
+      "problem": "balance",
+      "description": "Bộ hệ số tối giản sau khi đối chiếu",
+      "content": "Bộ hệ số nguyên dương tối giản là: {coefficients}."
+    },
+    {
+      "id": "balance.check_header",
+      "problem": "balance",
+      "description": "Mở đầu bước kiểm tra",
+      "content": "Kiểm tra lại số nguyên tử mỗi nguyên tố ở hai vế."
+    },
+    {
+      "id": "balance.check_item",
+      "problem": "balance",
+      "description": "Đối chiếu một nguyên tố",
+      "content": "- {element}: vế trái {left}, vế phải {right}."
+    },
+    {
+      "id": "balance.result",
+      "problem": "balance",
+      "description": "Phương trình kết quả",
+      "content": "Phương trình đã cân bằng và rút gọn: {equation}"
+    },
+    {
+      "id": "chain.intro",
+      "problem": "chain",
+      "description": "Nêu chất xuất phát và chất đích",
+      "content": "Cần điều chế {target} từ {start}. Tìm chuỗi ít bước nhất, ưu tiên điều kiện đơn giản, và được dùng thuốc thử thông dụng."
+    },
+    {
+      "id": "chain.step",
+      "problem": "chain",
+      "description": "Mô tả một mắt xích",
+      "content": "Từ {source} chuyển thành {product} bằng phản ứng {type_label}. Điều kiện: {condition_label}."
+    },
+    {
+      "id": "chain.equation",
+      "problem": "chain",
+      "description": "Phương trình của mắt xích",
+      "content": "Phương trình: {equation}"
+    },
+    {
+      "id": "chain.aux",
+      "problem": "chain",
+      "description": "Thuốc thử phụ đã dùng",
+      "content": "Thuốc thử cho phép dùng thêm: {auxiliaries}."
+    },
+    {
+      "id": "chain.no_aux",
+      "problem": "chain",
+      "description": "Không cần thuốc thử phụ",
+      "content": "Bước này không cần thêm thuốc thử ngoài chất đang có."
+    },
+    {
+      "id": "chain.rule",
+      "problem": "chain",
+      "description": "Luật if-then được áp dụng",
+      "content": "Khớp luật {rule_id}: {rule_text}."
+    },
+    {
+      "id": "chain.no_rule",
+      "problem": "chain",
+      "description": "Dùng phản ứng cụ thể",
+      "content": "Dùng phản ứng cụ thể đã lưu trong cơ sở tri thức."
+    },
+    {
+      "id": "chain.byproducts",
+      "problem": "chain",
+      "description": "Sản phẩm phụ",
+      "content": "Sản phẩm đi kèm: {byproducts}."
+    },
+    {
+      "id": "chain.summary",
+      "problem": "chain",
+      "description": "Chốt chuỗi phản ứng",
+      "content": "Chuỗi từ {start} đến {target} gồm {count} phản ứng:\n{listing}"
+    },
+    {
+      "id": "chain.not_found",
+      "problem": "chain",
+      "description": "Không tìm thấy đường đi",
+      "content": "Không tìm thấy chuỗi từ {start} đến {target} trong tối đa {max_steps} bước với kho thuốc thử hiện có."
+    },
+    {
+      "id": "chain.already",
+      "problem": "chain",
+      "description": "Chất xuất phát trùng chất đích",
+      "content": "{formula} đã là chất cần điều chế, không cần thêm phản ứng."
+    },
+    {
+      "id": "quantity.mole_from_mass",
+      "problem": "quantity",
+      "description": "Đổi khối lượng ra số mol",
+      "content": "Tính số mol {formula}: n = m / M = {mass} / {molar_mass} = {moles} mol."
+    },
+    {
+      "id": "quantity.mole_from_volume",
+      "problem": "quantity",
+      "description": "Đổi thể tích khí ra số mol",
+      "content": "Tính số mol {formula}: n = V / {molar_volume} = {volume} / {molar_volume} = {moles} mol."
+    },
+    {
+      "id": "quantity.mole_from_mole",
+      "problem": "quantity",
+      "description": "Số mol đã cho sẵn",
+      "content": "Số mol {formula} đã biết là {moles} mol."
+    },
+    {
+      "id": "quantity.ratio",
+      "problem": "quantity",
+      "description": "Suy số mol theo hệ số",
+      "content": "Theo phương trình, n{find} / n{known} = {coeff_find}/{coeff_known}. Vậy n{find} = {ratio} × {moles_known} = {moles_find} mol."
+    },
+    {
+      "id": "quantity.ratio_equal",
+      "problem": "quantity",
+      "description": "Hai chất có cùng hệ số",
+      "content": "Theo phương trình, n{find} = n{known} = {moles} mol."
+    },
+    {
+      "id": "quantity.mass",
+      "problem": "quantity",
+      "description": "Đổi số mol ra khối lượng",
+      "content": "Tính khối lượng {formula}: m = n × M = {moles} × {molar_mass} = {value} g."
+    },
+    {
+      "id": "quantity.volume",
+      "problem": "quantity",
+      "description": "Đổi số mol ra thể tích khí",
+      "content": "Tính thể tích {formula} ở đktc: V = n × {molar_volume} = {moles} × {molar_volume} = {value} lít."
+    },
+    {
+      "id": "quantity.mole",
+      "problem": "quantity",
+      "description": "Kết quả là số mol",
+      "content": "Số mol {formula} cần tìm là {moles} mol."
+    },
+    {
+      "id": "quantity.answer",
+      "problem": "quantity",
+      "description": "Đáp số",
+      "content": "Đáp số: {value} {unit} {formula}."
+    }
+  ]
+}

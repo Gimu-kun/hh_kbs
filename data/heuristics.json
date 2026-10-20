@@ -1,0 +1,79 @@
+{
+  "items": [
+    {
+      "id": "H1",
+      "name": "Ưu tiên ít bước",
+      "kind": "min_steps",
+      "weight": 100,
+      "description": "Chuỗi ngắn hơn luôn được chọn trước chuỗi dài hơn."
+    },
+    {
+      "id": "H2",
+      "name": "Ưu tiên điều kiện đơn giản",
+      "kind": "condition_penalty",
+      "weight": 1,
+      "penalties": {
+        "NONE": 0,
+        "HEAT": 2,
+        "DILUTE": 1,
+        "CONC": 2,
+        "CONC_HEAT": 4,
+        "DILUTE_HEAT": 3,
+        "CATALYST": 3,
+        "HEAT_CATALYST": 4,
+        "LIGHT": 2,
+        "HEAT_LIGHT": 3,
+        "PRESSURE": 3,
+        "HEAT_PRESSURE": 4,
+        "ELECTROLYSIS_MELT": 5,
+        "ELECTROLYSIS_SOLUTION": 5,
+        "OTHER": 3
+      },
+      "description": "Khi cùng số bước, chọn phản ứng có điều kiện đơn giản hơn. Số càng nhỏ càng ưu tiên."
+    },
+    {
+      "id": "H3",
+      "name": "Hạn chế chất phụ",
+      "kind": "aux_penalty",
+      "weight": 1,
+      "description": "Khi cùng số bước và cùng mức điều kiện, chọn phản ứng dùng ít thuốc thử phụ hơn."
+    },
+    {
+      "id": "H4",
+      "name": "Mẫu điều chế kim loại",
+      "kind": "pattern",
+      "pattern": [
+        "don_chat_kim_loai",
+        "oxit_bazo",
+        "bazo",
+        "muoi"
+      ],
+      "description": "Mẫu quen thuộc: kim loại → oxit → bazơ → muối. Dùng để đối chiếu, không ép buộc đường đi."
+    },
+    {
+      "id": "H5",
+      "name": "Dãy hoạt động hóa học",
+      "kind": "activity_series",
+      "series": [
+        "K",
+        "Ba",
+        "Ca",
+        "Na",
+        "Mg",
+        "Al",
+        "Zn",
+        "Fe",
+        "Ni",
+        "Sn",
+        "Pb",
+        "H",
+        "Cu",
+        "Hg",
+        "Ag",
+        "Pt",
+        "Au"
+      ],
+      "description": "Dãy SGK. Activity bằng vị trí bắt đầu từ 1. Số nhỏ hơn nghĩa là hoạt động mạnh hơn."
+    }
+  ]
+}

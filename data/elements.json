@@ -1,0 +1,1661 @@
+{
+  "items": [
+    {
+      "symbol": "H",
+      "name": "Hiđro",
+      "z": 1,
+      "mass": 1,
+      "valence": [
+        1
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": 12,
+      "groups": []
+    },
+    {
+      "symbol": "He",
+      "name": "Heli",
+      "z": 2,
+      "mass": 4,
+      "valence": [
+        0
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Li",
+      "name": "Liti",
+      "z": 3,
+      "mass": 7,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Be",
+      "name": "Beri",
+      "z": 4,
+      "mass": 9,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "B",
+      "name": "Bo",
+      "z": 5,
+      "mass": 11,
+      "valence": [
+        3
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "C",
+      "name": "Cacbon",
+      "z": 6,
+      "mass": 12,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "N",
+      "name": "Nitơ",
+      "z": 7,
+      "mass": 14,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "O",
+      "name": "Oxi",
+      "z": 8,
+      "mass": 16,
+      "valence": [
+        2
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "F",
+      "name": "Flo",
+      "z": 9,
+      "mass": 19,
+      "valence": [
+        1
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ne",
+      "name": "Neon",
+      "z": 10,
+      "mass": 20.2,
+      "valence": [
+        0
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Na",
+      "name": "Natri",
+      "z": 11,
+      "mass": 23,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 4,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Mg",
+      "name": "Magiê",
+      "z": 12,
+      "mass": 24,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 5,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "Al",
+      "name": "Nhôm",
+      "z": 13,
+      "mass": 27,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 6,
+      "groups": []
+    },
+    {
+      "symbol": "Si",
+      "name": "Silic",
+      "z": 14,
+      "mass": 28,
+      "valence": [
+        4
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "P",
+      "name": "Photpho",
+      "z": 15,
+      "mass": 31,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "S",
+      "name": "Lưu huỳnh",
+      "z": 16,
+      "mass": 32,
+      "valence": [
+        2,
+        4,
+        6
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cl",
+      "name": "Clo",
+      "z": 17,
+      "mass": 35.5,
+      "valence": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ar",
+      "name": "Argon",
+      "z": 18,
+      "mass": 40,
+      "valence": [
+        0
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "K",
+      "name": "Kali",
+      "z": 19,
+      "mass": 39,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 1,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Ca",
+      "name": "Canxi",
+      "z": 20,
+      "mass": 40,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 3,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "Sc",
+      "name": "Scandi",
+      "z": 21,
+      "mass": 45,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ti",
+      "name": "Titan",
+      "z": 22,
+      "mass": 48,
+      "valence": [
+        2,
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "V",
+      "name": "Vanadi",
+      "z": 23,
+      "mass": 51,
+      "valence": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cr",
+      "name": "Crom",
+      "z": 24,
+      "mass": 52,
+      "valence": [
+        2,
+        3,
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Mn",
+      "name": "Mangan",
+      "z": 25,
+      "mass": 55,
+      "valence": [
+        2,
+        4,
+        7
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Fe",
+      "name": "Sắt",
+      "z": 26,
+      "mass": 56,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 8,
+      "groups": []
+    },
+    {
+      "symbol": "Co",
+      "name": "Coban",
+      "z": 27,
+      "mass": 59,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ni",
+      "name": "Niken",
+      "z": 28,
+      "mass": 58.7,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 9,
+      "groups": []
+    },
+    {
+      "symbol": "Cu",
+      "name": "Đồng",
+      "z": 29,
+      "mass": 64,
+      "valence": [
+        1,
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 13,
+      "groups": []
+    },
+    {
+      "symbol": "Zn",
+      "name": "Kẽm",
+      "z": 30,
+      "mass": 65,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 7,
+      "groups": []
+    },
+    {
+      "symbol": "Ga",
+      "name": "Gali",
+      "z": 31,
+      "mass": 69.7,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ge",
+      "name": "Gecmani",
+      "z": 32,
+      "mass": 72.6,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "As",
+      "name": "Asen",
+      "z": 33,
+      "mass": 74.9,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Se",
+      "name": "Selen",
+      "z": 34,
+      "mass": 79,
+      "valence": [
+        2,
+        4,
+        6
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Br",
+      "name": "Brom",
+      "z": 35,
+      "mass": 80,
+      "valence": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Kr",
+      "name": "Kripton",
+      "z": 36,
+      "mass": 83.8,
+      "valence": [
+        0,
+        2
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Rb",
+      "name": "Rubidi",
+      "z": 37,
+      "mass": 85.5,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Sr",
+      "name": "Stronti",
+      "z": 38,
+      "mass": 87.6,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "Y",
+      "name": "Ytri",
+      "z": 39,
+      "mass": 88.9,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Zr",
+      "name": "Zirconi",
+      "z": 40,
+      "mass": 91.2,
+      "valence": [
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Nb",
+      "name": "Niobi",
+      "z": 41,
+      "mass": 92.9,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Mo",
+      "name": "Molypden",
+      "z": 42,
+      "mass": 95.9,
+      "valence": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Tc",
+      "name": "Tecneti",
+      "z": 43,
+      "mass": 98,
+      "valence": [
+        4,
+        7
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ru",
+      "name": "Rutheni",
+      "z": 44,
+      "mass": 101.1,
+      "valence": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Rh",
+      "name": "Rodi",
+      "z": 45,
+      "mass": 102.9,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pd",
+      "name": "Paladi",
+      "z": 46,
+      "mass": 106.4,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ag",
+      "name": "Bạc",
+      "z": 47,
+      "mass": 108,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 15,
+      "groups": []
+    },
+    {
+      "symbol": "Cd",
+      "name": "Cadimi",
+      "z": 48,
+      "mass": 112.4,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "In",
+      "name": "Indi",
+      "z": 49,
+      "mass": 114.8,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Sn",
+      "name": "Thiếc",
+      "z": 50,
+      "mass": 118.7,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 10,
+      "groups": []
+    },
+    {
+      "symbol": "Sb",
+      "name": "Antimon",
+      "z": 51,
+      "mass": 121.8,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Te",
+      "name": "Telu",
+      "z": 52,
+      "mass": 127.6,
+      "valence": [
+        2,
+        4,
+        6
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "I",
+      "name": "Iốt",
+      "z": 53,
+      "mass": 127,
+      "valence": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Xe",
+      "name": "Xenon",
+      "z": 54,
+      "mass": 131.3,
+      "valence": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cs",
+      "name": "Xesi",
+      "z": 55,
+      "mass": 132.9,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Ba",
+      "name": "Bari",
+      "z": 56,
+      "mass": 137,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 2,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "La",
+      "name": "Lantan",
+      "z": 57,
+      "mass": 138.9,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ce",
+      "name": "Xeri",
+      "z": 58,
+      "mass": 140.1,
+      "valence": [
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pr",
+      "name": "Prazeodymi",
+      "z": 59,
+      "mass": 140.9,
+      "valence": [
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Nd",
+      "name": "Neodymi",
+      "z": 60,
+      "mass": 144.2,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pm",
+      "name": "Prometi",
+      "z": 61,
+      "mass": 145,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Sm",
+      "name": "Samari",
+      "z": 62,
+      "mass": 150.4,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Eu",
+      "name": "Europi",
+      "z": 63,
+      "mass": 152,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Gd",
+      "name": "Gadolini",
+      "z": 64,
+      "mass": 157.3,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Tb",
+      "name": "Terbi",
+      "z": 65,
+      "mass": 158.9,
+      "valence": [
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Dy",
+      "name": "Dysprosi",
+      "z": 66,
+      "mass": 162.5,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ho",
+      "name": "Holmi",
+      "z": 67,
+      "mass": 164.9,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Er",
+      "name": "Erbi",
+      "z": 68,
+      "mass": 167.3,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Tm",
+      "name": "Tuli",
+      "z": 69,
+      "mass": 168.9,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Yb",
+      "name": "Ytterbi",
+      "z": 70,
+      "mass": 173,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Lu",
+      "name": "Lutexi",
+      "z": 71,
+      "mass": 175,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Hf",
+      "name": "Hafni",
+      "z": 72,
+      "mass": 178.5,
+      "valence": [
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ta",
+      "name": "Tantan",
+      "z": 73,
+      "mass": 180.9,
+      "valence": [
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "W",
+      "name": "Vonfram",
+      "z": 74,
+      "mass": 183.8,
+      "valence": [
+        4,
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Re",
+      "name": "Rheni",
+      "z": 75,
+      "mass": 186.2,
+      "valence": [
+        4,
+        6,
+        7
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Os",
+      "name": "Osmi",
+      "z": 76,
+      "mass": 190.2,
+      "valence": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ir",
+      "name": "Iridi",
+      "z": 77,
+      "mass": 192.2,
+      "valence": [
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pt",
+      "name": "Platin",
+      "z": 78,
+      "mass": 195.1,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 16,
+      "groups": []
+    },
+    {
+      "symbol": "Au",
+      "name": "Vàng",
+      "z": 79,
+      "mass": 197,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 17,
+      "groups": []
+    },
+    {
+      "symbol": "Hg",
+      "name": "Thủy ngân",
+      "z": 80,
+      "mass": 200.6,
+      "valence": [
+        1,
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 14,
+      "groups": []
+    },
+    {
+      "symbol": "Tl",
+      "name": "Tali",
+      "z": 81,
+      "mass": 204.4,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pb",
+      "name": "Chì",
+      "z": 82,
+      "mass": 207.2,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": 11,
+      "groups": []
+    },
+    {
+      "symbol": "Bi",
+      "name": "Bitmut",
+      "z": 83,
+      "mass": 209,
+      "valence": [
+        3,
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Po",
+      "name": "Poloni",
+      "z": 84,
+      "mass": 209,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "At",
+      "name": "Astatin",
+      "z": 85,
+      "mass": 210,
+      "valence": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Rn",
+      "name": "Radon",
+      "z": 86,
+      "mass": 222,
+      "valence": [
+        0,
+        2
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Fr",
+      "name": "Franxi",
+      "z": 87,
+      "mass": 223,
+      "valence": [
+        1
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem"
+      ]
+    },
+    {
+      "symbol": "Ra",
+      "name": "Radi",
+      "z": 88,
+      "mass": 226,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": [
+        "kiem_tho"
+      ]
+    },
+    {
+      "symbol": "Ac",
+      "name": "Actini",
+      "z": 89,
+      "mass": 227,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Th",
+      "name": "Thori",
+      "z": 90,
+      "mass": 232,
+      "valence": [
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pa",
+      "name": "Protactini",
+      "z": 91,
+      "mass": 231,
+      "valence": [
+        4,
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "U",
+      "name": "Urani",
+      "z": 92,
+      "mass": 238,
+      "valence": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Np",
+      "name": "Neptuni",
+      "z": 93,
+      "mass": 237,
+      "valence": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Pu",
+      "name": "Plutoni",
+      "z": 94,
+      "mass": 244,
+      "valence": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Am",
+      "name": "Americi",
+      "z": 95,
+      "mass": 243,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cm",
+      "name": "Curi",
+      "z": 96,
+      "mass": 247,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Bk",
+      "name": "Berkeli",
+      "z": 97,
+      "mass": 247,
+      "valence": [
+        3,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cf",
+      "name": "Californi",
+      "z": 98,
+      "mass": 251,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Es",
+      "name": "Einsteini",
+      "z": 99,
+      "mass": 252,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Fm",
+      "name": "Fermi",
+      "z": 100,
+      "mass": 257,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Md",
+      "name": "Mendelevi",
+      "z": 101,
+      "mass": 258,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "No",
+      "name": "Nobeli",
+      "z": 102,
+      "mass": 259,
+      "valence": [
+        2,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Lr",
+      "name": "Lawrenci",
+      "z": 103,
+      "mass": 266,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Rf",
+      "name": "Rutherfordi",
+      "z": 104,
+      "mass": 267,
+      "valence": [
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Db",
+      "name": "Dubni",
+      "z": 105,
+      "mass": 268,
+      "valence": [
+        5
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Sg",
+      "name": "Seaborgi",
+      "z": 106,
+      "mass": 269,
+      "valence": [
+        6
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Bh",
+      "name": "Bohri",
+      "z": 107,
+      "mass": 270,
+      "valence": [
+        7
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Hs",
+      "name": "Hassi",
+      "z": 108,
+      "mass": 269,
+      "valence": [
+        8
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Mt",
+      "name": "Meitneri",
+      "z": 109,
+      "mass": 278,
+      "valence": [
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ds",
+      "name": "Darmstadti",
+      "z": 110,
+      "mass": 281,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Rg",
+      "name": "Roentgeni",
+      "z": 111,
+      "mass": 282,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Cn",
+      "name": "Copernixi",
+      "z": 112,
+      "mass": 285,
+      "valence": [
+        2
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Nh",
+      "name": "Nihoni",
+      "z": 113,
+      "mass": 286,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Fl",
+      "name": "Flerovi",
+      "z": 114,
+      "mass": 289,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Mc",
+      "name": "Moscovi",
+      "z": 115,
+      "mass": 290,
+      "valence": [
+        1,
+        3
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Lv",
+      "name": "Livermori",
+      "z": 116,
+      "mass": 293,
+      "valence": [
+        2,
+        4
+      ],
+      "type": "kim_loai",
+      "type_label": "Kim loại",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Ts",
+      "name": "Tennessine",
+      "z": 117,
+      "mass": 294,
+      "valence": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "type": "phi_kim",
+      "type_label": "Phi kim",
+      "activity": null,
+      "groups": []
+    },
+    {
+      "symbol": "Og",
+      "name": "Oganesson",
+      "z": 118,
+      "mass": 294,
+      "valence": [
+        0,
+        2
+      ],
+      "type": "khi_hiem",
+      "type_label": "Khí hiếm",
+      "activity": null,
+      "groups": []
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "items": [
+    {
+      "formula": "O2",
+      "group": "phi_kim",
+      "note": "Oxi, dùng để đốt cháy và oxi hóa."
+    },
+    {
+      "formula": "H2",
+      "group": "phi_kim",
+      "note": "Hiđro, chất khử."
+    },
+    {
+      "formula": "N2",
+      "group": "phi_kim",
+      "note": "Nitơ."
+    },
+    {
+      "formula": "Cl2",
+      "group": "phi_kim",
+      "note": "Clo."
+    },
+    {
+      "formula": "Br2",
+      "group": "phi_kim",
+      "note": "Brom."
+    },
+    {
+      "formula": "I2",
+      "group": "phi_kim",
+      "note": "Iot."
+    },
+    {
+      "formula": "S",
+      "group": "phi_kim",
+      "note": "Lưu huỳnh."
+    },
+    {
+      "formula": "C",
+      "group": "phi_kim",
+      "note": "Cacbon, chất khử."
+    },
+    {
+      "formula": "P",
+      "group": "phi_kim",
+      "note": "Photpho."
+    },
+    {
+      "formula": "H2O",
+      "group": "dung_moi",
+      "note": "Nước."
+    },
+    {
+      "formula": "HCl",
+      "group": "axit",
+      "note": "Axit clohiđric."
+    },
+    {
+      "formula": "H2SO4",
+      "group": "axit",
+      "note": "Axit sunfuric."
+    },
+    {
+      "formula": "HNO3",
+      "group": "axit",
+      "note": "Axit nitric."
+    },
+    {
+      "formula": "H3PO4",
+      "group": "axit",
+      "note": "Axit photphoric."
+    },
+    {
+      "formula": "H2S",
+      "group": "axit",
+      "note": "Axit sunfuhidric."
+    },
+    {
+      "formula": "H2SO3",
+      "group": "axit",
+      "note": "Axit sunfurơ."
+    },
+    {
+      "formula": "H2CO3",
+      "group": "axit",
+      "note": "Axit cacbonic."
+    },
+    {
+      "formula": "NaOH",
+      "group": "bazo",
+      "note": "Natri hiđroxit."
+    },
+    {
+      "formula": "KOH",
+      "group": "bazo",
+      "note": "Kali hiđroxit."
+    },
+    {
+      "formula": "Ca(OH)2",
+      "group": "bazo",
+      "note": "Canxi hiđroxit."
+    },
+    {
+      "formula": "Ba(OH)2",
+      "group": "bazo",
+      "note": "Bari hiđroxit."
+    },
+    {
+      "formula": "NH3",
+      "group": "bazo",
+      "note": "Amoniac."
+    },
+    {
+      "formula": "NaCl",
+      "group": "muoi",
+      "note": "Natri clorua."
+    },
+    {
+      "formula": "KCl",
+      "group": "muoi",
+      "note": "Kali clorua."
+    },
+    {
+      "formula": "BaCl2",
+      "group": "muoi",
+      "note": "Bari clorua."
+    },
+    {
+      "formula": "CaCl2",
+      "group": "muoi",
+      "note": "Canxi clorua."
+    },
+    {
+      "formula": "MgCl2",
+      "group": "muoi",
+      "note": "Magie clorua."
+    },
+    {
+      "formula": "AlCl3",
+      "group": "muoi",
+      "note": "Nhôm clorua."
+    },
+    {
+      "formula": "FeCl3",
+      "group": "muoi",
+      "note": "Sắt(III) clorua."
+    },
+    {
+      "formula": "FeCl2",
+      "group": "muoi",
+      "note": "Sắt(II) clorua."
+    },
+    {
+      "formula": "Na2SO4",
+      "group": "muoi",
+      "note": "Natri sunfat."
+    },
+    {
+      "formula": "K2SO4",
+      "group": "muoi",
+      "note": "Kali sunfat."
+    },
+    {
+      "formula": "CuSO4",
+      "group": "muoi",
+      "note": "Đồng(II) sunfat."
+    },
+    {
+      "formula": "ZnSO4",
+      "group": "muoi",
+      "note": "Kẽm sunfat."
+    },
+    {
+      "formula": "Na2CO3",
+      "group": "muoi",
+      "note": "Natri cacbonat."
+    },
+    {
+      "formula": "K2CO3",
+      "group": "muoi",
+      "note": "Kali cacbonat."
+    },
+    {
+      "formula": "AgNO3",
+      "group": "muoi",
+      "note": "Bạc nitrat."
+    },
+    {
+      "formula": "NaNO3",
+      "group": "muoi",
+      "note": "Natri nitrat."
+    },
+    {
+      "formula": "KNO3",
+      "group": "muoi",
+      "note": "Kali nitrat."
+    },
+    {
+      "formula": "Ba(NO3)2",
+      "group": "muoi",
+      "note": "Bari nitrat."
+    },
+    {
+      "formula": "NH4Cl",
+      "group": "muoi",
+      "note": "Amoni clorua."
+    },
+    {
+      "formula": "(NH4)2SO4",
+      "group": "muoi",
+      "note": "Amoni sunfat."
+    },
+    {
+      "formula": "CO2",
+      "group": "oxit",
+      "note": "Cacbon đioxit."
+    },
+    {
+      "formula": "CO",
+      "group": "oxit",
+      "note": "Cacbon monoxit, chất khử."
+    },
+    {
+      "formula": "SO2",
+      "group": "oxit",
+      "note": "Lưu huỳnh đioxit."
+    },
+    {
+      "formula": "SO3",
+      "group": "oxit",
+      "note": "Lưu huỳnh trioxit."
+    },
+    {
+      "formula": "NO",
+      "group": "oxit",
+      "note": "Nitơ monoxit."
+    }
+  ]
+}

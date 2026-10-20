@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "F_N_MASS",
+      "name": "Số mol từ khối lượng",
+      "expression": "n = m / M",
+      "description": "m là khối lượng (g), M là khối lượng mol (g/mol).",
+      "value": null
+    },
+    {
+      "id": "F_N_VOLUME",
+      "name": "Số mol từ thể tích khí",
+      "expression": "n = V / 22,4",
+      "description": "V là thể tích khí (lít) ở điều kiện tiêu chuẩn.",
+      "value": null
+    },
+    {
+      "id": "F_MASS",
+      "name": "Khối lượng từ số mol",
+      "expression": "m = n × M",
+      "description": "n là số mol, M là khối lượng mol (g/mol).",
+      "value": null
+    },
+    {
+      "id": "F_VOLUME",
+      "name": "Thể tích khí từ số mol",
+      "expression": "V = n × 22,4",
+      "description": "Thể tích khí ở đktc, đơn vị lít.",
+      "value": null
+    },
+    {
+      "id": "F_RATIO",
+      "name": "Tỉ lệ mol theo phương trình",
+      "expression": "n2 = n1 × (hệ số 2 / hệ số 1)",
+      "description": "Suy số mol chất cần tìm từ số mol chất đã biết.",
+      "value": null
+    },
+    {
+      "id": "F_VM",
+      "name": "Thể tích mol khí ở đktc",
+      "expression": "Vm = 22,4 lít/mol",
+      "description": "Dùng khi đổi số mol khí ra thể tích và ngược lại.",
+      "value": 22.4
+    }
+  ]
+}

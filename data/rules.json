@@ -1,0 +1,471 @@
+{
+  "items": [
+    {
+      "id": "L1",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit bazơ tan (Na2O, K2O, CaO, BaO), Y là H2O",
+      "then_text": "X + Y → bazơ tan",
+      "type": "hoa_hop",
+      "priority": 30,
+      "match": {
+        "main_formula": [
+          "Na2O",
+          "K2O",
+          "CaO",
+          "BaO",
+          "Li2O",
+          "SrO"
+        ],
+        "aux_formula_any": [
+          "H2O"
+        ],
+        "product_class_any": [
+          "bazo"
+        ]
+      }
+    },
+    {
+      "id": "L2",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit axit (CO2, SO2, SO3, P2O5, N2O5), Y là H2O",
+      "then_text": "X + Y → axit tương ứng",
+      "type": "hoa_hop",
+      "priority": 30,
+      "match": {
+        "main_class": [
+          "oxit_axit"
+        ],
+        "aux_formula_any": [
+          "H2O"
+        ],
+        "product_class_any": [
+          "axit"
+        ]
+      }
+    },
+    {
+      "id": "L3",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit bazơ, Y là axit",
+      "then_text": "X + Y → muối + H2O",
+      "type": "trao_doi",
+      "priority": 20,
+      "match": {
+        "main_class": [
+          "oxit_bazo",
+          "oxit_luong_tinh"
+        ],
+        "aux_class_any": [
+          "axit"
+        ],
+        "product_class_any": [
+          "muoi"
+        ],
+        "product_formula_any": [
+          "H2O"
+        ]
+      }
+    },
+    {
+      "id": "L4",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit axit, Y là bazơ tan",
+      "then_text": "X + Y → muối + H2O",
+      "type": "trao_doi",
+      "priority": 20,
+      "match": {
+        "main_class": [
+          "oxit_axit"
+        ],
+        "aux_class_any": [
+          "bazo"
+        ],
+        "product_class_any": [
+          "muoi"
+        ]
+      }
+    },
+    {
+      "id": "L5",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit bazơ, Y là oxit axit",
+      "then_text": "X + Y → muối",
+      "type": "hoa_hop",
+      "priority": 18,
+      "match": {
+        "main_class": [
+          "oxit_bazo",
+          "oxit_axit"
+        ],
+        "aux_class_any": [
+          "oxit_bazo",
+          "oxit_axit"
+        ],
+        "product_class_any": [
+          "muoi"
+        ]
+      }
+    },
+    {
+      "id": "L6",
+      "group": "Phản ứng của oxit",
+      "if_text": "X là oxit kim loại, Y là chất khử (H2, CO, C, Al)",
+      "then_text": "X + Y --t°→ kim loại hoặc oxit thấp hơn",
+      "type": "oxi_hoa_khu",
+      "priority": 24,
+      "match": {
+        "main_class": [
+          "oxit_bazo",
+          "oxit_luong_tinh"
+        ],
+        "aux_formula_any": [
+          "H2",
+          "CO",
+          "C",
+          "Al"
+        ],
+        "product_class_any": [
+          "don_chat_kim_loai",
+          "oxit"
+        ]
+      }
+    },
+    {
+      "id": "L7",
+      "group": "Phản ứng của axit",
+      "if_text": "M là kim loại đứng trước H, A là HCl hoặc H2SO4 loãng",
+      "then_text": "M + A → muối (hóa trị thấp) + H2",
+      "type": "the",
+      "priority": 26,
+      "match": {
+        "main_class": [
+          "don_chat_kim_loai"
+        ],
+        "main_before_hydrogen": true,
+        "aux_formula_any": [
+          "HCl",
+          "H2SO4"
+        ],
+        "product_formula_any": [
+          "H2"
+        ],
+        "condition_not": [
+          "CONC",
+          "CONC_HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L8",
+      "group": "Phản ứng của axit",
+      "if_text": "M là kim loại, A là HNO3 hoặc H2SO4 đặc nóng",
+      "then_text": "M + A → muối + sản phẩm khử + H2O",
+      "type": "oxi_hoa_khu",
+      "priority": 27,
+      "match": {
+        "main_class": [
+          "don_chat_kim_loai"
+        ],
+        "type": [
+          "oxi_hoa_khu"
+        ],
+        "aux_formula_any": [
+          "HNO3",
+          "H2SO4"
+        ]
+      }
+    },
+    {
+      "id": "L9",
+      "group": "Phản ứng của axit",
+      "if_text": "X là axit, Y là bazơ",
+      "then_text": "X + Y → muối + H2O",
+      "type": "trung_hoa",
+      "priority": 22,
+      "match": {
+        "main_class": [
+          "axit",
+          "bazo"
+        ],
+        "aux_class_any": [
+          "axit",
+          "bazo"
+        ],
+        "product_class_any": [
+          "muoi"
+        ],
+        "product_formula_any": [
+          "H2O"
+        ]
+      }
+    },
+    {
+      "id": "L10",
+      "group": "Phản ứng của axit",
+      "if_text": "X là axit, Y là muối, sản phẩm có khí, kết tủa hoặc axit yếu hơn",
+      "then_text": "X + Y → muối mới + axit mới",
+      "type": "trao_doi",
+      "priority": 16,
+      "match": {
+        "main_class": [
+          "axit",
+          "muoi"
+        ],
+        "aux_class_any": [
+          "axit",
+          "muoi"
+        ],
+        "product_class_any": [
+          "muoi"
+        ],
+        "type": [
+          "trao_doi"
+        ]
+      }
+    },
+    {
+      "id": "L11",
+      "group": "Phản ứng của bazơ",
+      "if_text": "X là bazơ không tan",
+      "then_text": "X --t°→ oxit + H2O",
+      "type": "phan_huy",
+      "priority": 28,
+      "match": {
+        "main_class": [
+          "bazo_khong_tan"
+        ],
+        "product_class_any": [
+          "oxit"
+        ],
+        "product_formula_any": [
+          "H2O"
+        ],
+        "condition": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L12",
+      "group": "Phản ứng của bazơ",
+      "if_text": "X là dung dịch muối, Y là bazơ tan, có kết tủa hoặc chất bay hơi",
+      "then_text": "X + Y → muối mới + bazơ mới",
+      "type": "trao_doi",
+      "priority": 17,
+      "match": {
+        "main_class": [
+          "muoi"
+        ],
+        "aux_class_any": [
+          "bazo"
+        ],
+        "product_class_any": [
+          "bazo",
+          "muoi"
+        ]
+      }
+    },
+    {
+      "id": "L13",
+      "group": "Phản ứng của bazơ",
+      "if_text": "X là Al, Zn, Al(OH)3 hoặc Zn(OH)2, Y là kiềm mạnh",
+      "then_text": "X + kiềm → muối phức + H2 nếu X là kim loại",
+      "type": "trao_doi",
+      "priority": 25,
+      "match": {
+        "main_formula": [
+          "Al",
+          "Zn",
+          "Al(OH)3",
+          "Zn(OH)2",
+          "Al2O3",
+          "ZnO"
+        ],
+        "aux_formula_any": [
+          "NaOH",
+          "KOH"
+        ]
+      }
+    },
+    {
+      "id": "L14",
+      "group": "Phản ứng của muối",
+      "if_text": "M là kim loại hoạt động hơn kim loại trong muối, M không phản ứng mạnh với nước",
+      "then_text": "M + muối → muối mới + kim loại",
+      "type": "the",
+      "priority": 23,
+      "match": {
+        "main_class": [
+          "don_chat_kim_loai"
+        ],
+        "aux_class_any": [
+          "muoi"
+        ],
+        "product_class_any": [
+          "don_chat_kim_loai"
+        ],
+        "type": [
+          "the"
+        ]
+      }
+    },
+    {
+      "id": "L15",
+      "group": "Phản ứng của muối",
+      "if_text": "Hai muối tan trao đổi và tạo kết tủa",
+      "then_text": "muối 1 + muối 2 → hai muối mới",
+      "type": "trao_doi",
+      "priority": 15,
+      "match": {
+        "main_class": [
+          "muoi"
+        ],
+        "aux_class_any": [
+          "muoi"
+        ],
+        "product_class_any": [
+          "muoi"
+        ],
+        "type": [
+          "trao_doi"
+        ]
+      }
+    },
+    {
+      "id": "L16",
+      "group": "Phản ứng của muối",
+      "if_text": "X là muối không bền nhiệt (cacbonat, nitrat, clorat)",
+      "then_text": "X --t°→ sản phẩm phân hủy",
+      "type": "phan_huy",
+      "priority": 21,
+      "match": {
+        "main_class": [
+          "muoi"
+        ],
+        "type": [
+          "phan_huy"
+        ],
+        "condition": [
+          "HEAT",
+          "HEAT_CATALYST"
+        ]
+      }
+    },
+    {
+      "id": "L17",
+      "group": "Phản ứng của muối",
+      "if_text": "Muối halogenua rắn tác dụng với H2SO4 đặc",
+      "then_text": "muối + H2SO4 đặc --t°→ muối sunfat + hiđro halide",
+      "type": "trao_doi",
+      "priority": 19,
+      "match": {
+        "main_class": [
+          "muoi"
+        ],
+        "aux_formula_any": [
+          "H2SO4"
+        ],
+        "condition": [
+          "CONC",
+          "CONC_HEAT",
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L18",
+      "group": "Phản ứng của đơn chất",
+      "if_text": "X là kim loại kiềm hoặc kiềm thổ (trừ Be, Mg ở điều kiện thường), Y là H2O",
+      "then_text": "X + H2O → bazơ + H2",
+      "type": "the",
+      "priority": 32,
+      "match": {
+        "main_groups_any": [
+          "kiem",
+          "kiem_tho"
+        ],
+        "main_formula_not": [
+          "Be",
+          "Mg"
+        ],
+        "aux_formula_any": [
+          "H2O"
+        ],
+        "product_formula_any": [
+          "H2"
+        ]
+      }
+    },
+    {
+      "id": "L19",
+      "group": "Phản ứng của đơn chất",
+      "if_text": "M là kim loại, X là phi kim (O2, Cl2, S, Br2)",
+      "then_text": "M + X --t°→ muối hoặc oxit",
+      "type": "hoa_hop",
+      "priority": 14,
+      "match": {
+        "main_class": [
+          "don_chat_kim_loai"
+        ],
+        "aux_class_any": [
+          "don_chat_phi_kim"
+        ],
+        "product_class_any": [
+          "oxit",
+          "muoi"
+        ]
+      }
+    },
+    {
+      "id": "L20",
+      "group": "Phản ứng của đơn chất",
+      "if_text": "P là phi kim (C, S, P), X là O2",
+      "then_text": "P + O2 --t°→ oxit phi kim",
+      "type": "hoa_hop",
+      "priority": 29,
+      "match": {
+        "main_class": [
+          "don_chat_phi_kim"
+        ],
+        "aux_formula_any": [
+          "O2"
+        ],
+        "product_class_any": [
+          "oxit"
+        ]
+      }
+    },
+    {
+      "id": "L21",
+      "group": "Phản ứng điện phân",
+      "if_text": "Hợp chất nóng chảy (oxit hoặc muối clorua)",
+      "then_text": "điện phân nóng chảy → kim loại + khí",
+      "type": "dien_phan",
+      "priority": 31,
+      "match": {
+        "condition": [
+          "ELECTROLYSIS_MELT"
+        ],
+        "product_class_any": [
+          "don_chat_kim_loai"
+        ]
+      }
+    },
+    {
+      "id": "L22",
+      "group": "Phản ứng điện phân",
+      "if_text": "Dung dịch muối của kim loại yếu (CuSO4, AgNO3)",
+      "then_text": "điện phân dung dịch → kim loại + O2 + axit",
+      "type": "dien_phan",
+      "priority": 31,
+      "match": {
+        "condition": [
+          "ELECTROLYSIS_SOLUTION"
+        ],
+        "product_class_any": [
+          "don_chat_kim_loai"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "items": [
+    {
+      "code": "NONE",
+      "name": "Không cần điều kiện",
+      "symbol": "",
+      "complexity": 0,
+      "description": "Nhiệt độ thường, không xúc tác."
+    },
+    {
+      "code": "HEAT",
+      "name": "Đun nóng",
+      "symbol": "t°",
+      "complexity": 2,
+      "description": "Cần nhiệt độ cao."
+    },
+    {
+      "code": "DILUTE",
+      "name": "Dung dịch loãng",
+      "symbol": "loãng",
+      "complexity": 1,
+      "description": "Axit hoặc dung dịch loãng."
+    },
+    {
+      "code": "CONC",
+      "name": "Dung dịch đặc",
+      "symbol": "đặc",
+      "complexity": 2,
+      "description": "Axit hoặc dung dịch đặc."
+    },
+    {
+      "code": "CONC_HEAT",
+      "name": "Đặc và đun nóng",
+      "symbol": "đặc, t°",
+      "complexity": 4,
+      "description": "Thường gặp với H2SO4 đặc nóng."
+    },
+    {
+      "code": "DILUTE_HEAT",
+      "name": "Loãng và đun nóng",
+      "symbol": "loãng, t°",
+      "complexity": 3,
+      "description": "Dung dịch loãng có đun nóng."
+    },
+    {
+      "code": "CATALYST",
+      "name": "Xúc tác",
+      "symbol": "xúc tác",
+      "complexity": 3,
+      "description": "Cần chất xúc tác."
+    },
+    {
+      "code": "HEAT_CATALYST",
+      "name": "Đun nóng và xúc tác",
+      "symbol": "t°, xúc tác",
+      "complexity": 4,
+      "description": "Nhiệt độ cao kèm xúc tác."
+    },
+    {
+      "code": "LIGHT",
+      "name": "Ánh sáng",
+      "symbol": "ánh sáng",
+      "complexity": 2,
+      "description": "Phản ứng được kích thích bởi ánh sáng."
+    },
+    {
+      "code": "HEAT_LIGHT",
+      "name": "Đun nóng và ánh sáng",
+      "symbol": "t°, ánh sáng",
+      "complexity": 3,
+      "description": "Vừa đun vừa chiếu sáng."
+    },
+    {
+      "code": "PRESSURE",
+      "name": "Áp suất cao",
+      "symbol": "áp suất",
+      "complexity": 3,
+      "description": "Cần nén áp suất."
+    },
+    {
+      "code": "HEAT_PRESSURE",
+      "name": "Đun nóng và áp suất",
+      "symbol": "t°, áp suất",
+      "complexity": 4,
+      "description": "Nhiệt độ cao và áp suất cao."
+    },
+    {
+      "code": "ELECTROLYSIS_MELT",
+      "name": "Điện phân nóng chảy",
+      "symbol": "điện phân nóng chảy",
+      "complexity": 5,
+      "description": "Điện phân chất nóng chảy."
+    },
+    {
+      "code": "ELECTROLYSIS_SOLUTION",
+      "name": "Điện phân dung dịch",
+      "symbol": "điện phân dung dịch",
+      "complexity": 5,
+      "description": "Điện phân dung dịch."
+    },
+    {
+      "code": "OTHER",
+      "name": "Điều kiện khác",
+      "symbol": "điều kiện riêng",
+      "complexity": 3,
+      "description": "Điều kiện chưa xếp vào nhóm chuẩn."
+    }
+  ]
+}

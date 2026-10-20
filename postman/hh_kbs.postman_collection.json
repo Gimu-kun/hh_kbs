@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "CSTT hóa vô cơ",
+    "description": "CRUD mô hình tri thức và ba API suy diễn. Đặt biến baseUrl là http://127.0.0.1:8000",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://127.0.0.1:8000"}
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/health"}
+    },
+    {
+      "name": "Tổng quan mô hình",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/meta"}
+    },
+    {
+      "name": "Danh sách nguyên tố",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/elements"}
+    },
+    {
+      "name": "Chi tiết natri",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/elements/Na"}
+    },
+    {
+      "name": "Chất theo loại axit",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/compounds?class=axit"}
+    },
+    {
+      "name": "Phản ứng chứa CaCO3",
+      "request": {"method": "GET", "url": "{{baseUrl}}/api/v1/reactions?substance=CaCO3"}
+    },
+    {
+      "name": "Cân bằng Al + O2",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"equation\": \"Al + O2 → Al2O3\"\n}"},
+        "url": "{{baseUrl}}/api/v1/solve/balance"
+      }
+    },
+    {
+      "name": "Chuỗi CaCO3 đến Ca(OH)2",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"start\": \"CaCO3\",\n  \"target\": \"Ca(OH)2\",\n  \"max_steps\": 6\n}"},
+        "url": "{{baseUrl}}/api/v1/solve/chain"
+      }
+    },
+    {
+      "name": "Khối lượng ZnCl2 từ 13 g Zn",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"equation\": \"Zn + HCl → ZnCl2 + H2\",\n  \"known\": {\"formula\": \"Zn\", \"kind\": \"mass\", \"value\": 13},\n  \"find\": {\"formula\": \"ZnCl2\", \"kind\": \"mass\"}\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/solve/quantity"
+      }
+    },
+    {
+      "name": "Thể tích H2 từ 13 g Zn",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"equation\": \"Zn + HCl → ZnCl2 + H2\",\n  \"known\": {\"formula\": \"Zn\", \"kind\": \"mass\", \"value\": 13},\n  \"find\": {\"formula\": \"H2\", \"kind\": \"volume\"}\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/solve/quantity"
+      }
+    }
+  ]
+}
