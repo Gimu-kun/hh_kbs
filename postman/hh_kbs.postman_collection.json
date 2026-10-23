@@ -1,11 +1,14 @@
 {
   "info": {
     "name": "CSTT hóa vô cơ",
-    "description": "CRUD mô hình tri thức và ba API suy diễn. Đặt biến baseUrl là http://127.0.0.1:8000",
+    "description": "CRUD mô hình tri thức, suy diễn tiến từ luật, và API admin kiểm duyệt phản ứng. Đặt biến baseUrl là http://127.0.0.1:8000 và adminPassword từ biến môi trường KBS_ADMIN_PASSWORD. Lần đăng nhập đầu phải gọi đổi mật khẩu. Mọi POST, PUT, DELETE của CRUD cần header Authorization: Bearer {{token}}. Chuỗi công khai không ghi hàng chờ; allow_pending chỉ dùng khi muốn đi qua phản ứng chưa duyệt.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    {"key": "baseUrl", "value": "http://127.0.0.1:8000"}
+    {"key": "baseUrl", "value": "http://127.0.0.1:8000"},
+    {"key": "token", "value": ""},
+    {"key": "adminPassword", "value": ""},
+    {"key": "newPassword", "value": ""}
   ],
   "item": [
     {
@@ -46,7 +49,7 @@
       "request": {
         "method": "POST",
         "header": [{"key": "Content-Type", "value": "application/json"}],
-        "body": {"mode": "raw", "raw": "{\n  \"start\": \"CaCO3\",\n  \"target\": \"Ca(OH)2\",\n  \"max_steps\": 6\n}"},
+        "body": {"mode": "raw", "raw": "{\n  \"start\": \"CaCO3\",\n  \"target\": \"Ca(OH)2\",\n  \"max_steps\": 6,\n  \"allow_pending\": false\n}"},
         "url": "{{baseUrl}}/api/v1/solve/chain"
       }
     },
@@ -72,6 +75,90 @@
           "raw": "{\n  \"equation\": \"Zn + HCl → ZnCl2 + H2\",\n  \"known\": {\"formula\": \"Zn\", \"kind\": \"mass\", \"value\": 13},\n  \"find\": {\"formula\": \"H2\", \"kind\": \"volume\"}\n}"
         },
         "url": "{{baseUrl}}/api/v1/solve/quantity"
+      }
+    },
+    {
+      "name": "Đăng nhập admin",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"{{adminPassword}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/auth/login"
+      }
+    },
+    {
+      "name": "Phản ứng chờ duyệt",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": "{{baseUrl}}/api/v1/admin/reviews?status=pending"
+      }
+    },
+    {
+      "name": "Đồng bộ phản ứng sinh thêm",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": "{{baseUrl}}/api/v1/admin/reviews/sync"
+      }
+    },
+    {
+      "name": "Duyệt phản ứng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"note\": \"Khớp SGK\"\n}"},
+        "url": "{{baseUrl}}/api/v1/admin/reviews/RV00001/approve"
+      }
+    },
+    {
+      "name": "Từ chối phản ứng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"note\": \"Luật sinh sai sản phẩm\",\n  \"rule_fault\": true\n}"},
+        "url": "{{baseUrl}}/api/v1/admin/reviews/RV00001/reject"
+      }
+    },
+    {
+      "name": "Đổi mật khẩu admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"current_password\": \"{{adminPassword}}\",\n  \"new_password\": \"{{newPassword}}\"\n}"},
+        "url": "{{baseUrl}}/api/v1/auth/change-password"
+      }
+    },
+    {
+      "name": "Đăng xuất admin",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": "{{baseUrl}}/api/v1/auth/logout"
+      }
+    },
+    {
+      "name": "Mở lại phản ứng đã từ chối",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"note\": \"Xem lại sau khi sửa luật\"\n}"},
+        "url": "{{baseUrl}}/api/v1/admin/reviews/RV00001/reopen"
       }
     }
   ]

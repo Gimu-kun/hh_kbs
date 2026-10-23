@@ -141,8 +141,14 @@
     {
       "id": "chain.no_rule",
       "problem": "chain",
-      "description": "Dùng phản ứng cụ thể",
-      "content": "Dùng phản ứng cụ thể đã lưu trong cơ sở tri thức."
+      "description": "Không có luật sinh ra bước này",
+      "content": "Không xác định được luật sinh ra bước này."
+    },
+    {
+      "id": "chain.pending",
+      "problem": "chain",
+      "description": "Bước dùng phản ứng chưa được kiểm duyệt",
+      "content": "Phản ứng này chưa được kiểm duyệt (mã {review_id})."
     },
     {
       "id": "chain.byproducts",

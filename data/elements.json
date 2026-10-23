@@ -11,7 +11,13 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": 12,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        -1
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "He",
@@ -24,7 +30,10 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Li",
@@ -39,7 +48,14 @@
       "activity": null,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Be",
@@ -54,7 +70,14 @@
       "activity": null,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "B",
@@ -67,7 +90,13 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -3,
+        3
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "C",
@@ -81,7 +110,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -4,
+        2,
+        4
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "N",
@@ -95,7 +131,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -3,
+        3,
+        5
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "O",
@@ -108,7 +151,13 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        -1
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "F",
@@ -121,7 +170,12 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ne",
@@ -134,7 +188,10 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Na",
@@ -149,7 +206,14 @@
       "activity": 4,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Mg",
@@ -164,7 +228,14 @@
       "activity": 5,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Al",
@@ -177,7 +248,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 6,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Si",
@@ -190,7 +268,13 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -4,
+        4
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "P",
@@ -204,7 +288,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -3,
+        3,
+        5
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "S",
@@ -219,7 +310,15 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2,
+        4,
+        6
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cl",
@@ -235,7 +334,16 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1,
+        1,
+        3,
+        5,
+        7
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ar",
@@ -248,7 +356,10 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "K",
@@ -263,7 +374,14 @@
       "activity": 1,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ca",
@@ -278,7 +396,14 @@
       "activity": 3,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sc",
@@ -291,7 +416,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ti",
@@ -306,7 +438,18 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        4
+      ],
+      "ion_charges": [
+        2,
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "V",
@@ -322,7 +465,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "ion_charges": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cr",
@@ -337,7 +493,18 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        6
+      ],
+      "ion_charges": [
+        2,
+        3,
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Mn",
@@ -352,7 +519,18 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4,
+        7
+      ],
+      "ion_charges": [
+        2,
+        4,
+        7
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Fe",
@@ -366,7 +544,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 8,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Co",
@@ -380,7 +567,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ni",
@@ -394,7 +590,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 9,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cu",
@@ -408,7 +613,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 13,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        2
+      ],
+      "ion_charges": [
+        1,
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Zn",
@@ -421,7 +635,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 7,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ga",
@@ -434,7 +655,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ge",
@@ -448,7 +676,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2,
+        4
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "As",
@@ -462,7 +697,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -3,
+        3,
+        5
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Se",
@@ -477,7 +719,15 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2,
+        4,
+        6
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Br",
@@ -493,7 +743,16 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1,
+        1,
+        3,
+        5,
+        7
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Kr",
@@ -507,7 +766,13 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Rb",
@@ -522,7 +787,14 @@
       "activity": null,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sr",
@@ -537,7 +809,14 @@
       "activity": null,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Y",
@@ -550,7 +829,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Zr",
@@ -563,7 +849,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4
+      ],
+      "ion_charges": [
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Nb",
@@ -577,7 +870,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        5
+      ],
+      "ion_charges": [
+        3,
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Mo",
@@ -593,7 +895,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "ion_charges": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Tc",
@@ -607,7 +922,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4,
+        7
+      ],
+      "ion_charges": [
+        4,
+        7
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ru",
@@ -623,7 +947,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "ion_charges": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Rh",
@@ -636,7 +973,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pd",
@@ -650,7 +994,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ag",
@@ -663,7 +1016,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 15,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cd",
@@ -676,7 +1036,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "In",
@@ -690,7 +1057,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sn",
@@ -704,7 +1080,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 10,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sb",
@@ -718,7 +1103,14 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -3,
+        3,
+        5
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Te",
@@ -733,7 +1125,15 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2,
+        4,
+        6
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "I",
@@ -749,7 +1149,16 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1,
+        1,
+        3,
+        5,
+        7
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Xe",
@@ -766,7 +1175,16 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2,
+        4,
+        6,
+        8
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cs",
@@ -781,7 +1199,14 @@
       "activity": null,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ba",
@@ -796,7 +1221,14 @@
       "activity": 2,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "La",
@@ -809,7 +1241,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ce",
@@ -823,7 +1262,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4
+      ],
+      "ion_charges": [
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pr",
@@ -837,7 +1285,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4
+      ],
+      "ion_charges": [
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Nd",
@@ -850,7 +1307,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pm",
@@ -863,7 +1327,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sm",
@@ -877,7 +1348,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Eu",
@@ -891,7 +1371,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Gd",
@@ -904,7 +1393,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Tb",
@@ -918,7 +1414,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4
+      ],
+      "ion_charges": [
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Dy",
@@ -931,7 +1436,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ho",
@@ -944,7 +1456,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Er",
@@ -957,7 +1476,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Tm",
@@ -971,7 +1497,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Yb",
@@ -985,7 +1520,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Lu",
@@ -998,7 +1542,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Hf",
@@ -1011,7 +1562,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4
+      ],
+      "ion_charges": [
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ta",
@@ -1024,7 +1582,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        5
+      ],
+      "ion_charges": [
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "W",
@@ -1038,7 +1603,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4,
+        6
+      ],
+      "ion_charges": [
+        4,
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Re",
@@ -1053,7 +1627,18 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4,
+        6,
+        7
+      ],
+      "ion_charges": [
+        4,
+        6,
+        7
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Os",
@@ -1069,7 +1654,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "ion_charges": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ir",
@@ -1083,7 +1681,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4
+      ],
+      "ion_charges": [
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pt",
@@ -1097,7 +1704,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 16,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Au",
@@ -1111,7 +1727,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 17,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Hg",
@@ -1125,7 +1750,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 14,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        2
+      ],
+      "ion_charges": [
+        1,
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Tl",
@@ -1139,7 +1773,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pb",
@@ -1153,7 +1796,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": 11,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Bi",
@@ -1167,7 +1819,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        5
+      ],
+      "ion_charges": [
+        3,
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Po",
@@ -1181,7 +1842,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "At",
@@ -1197,7 +1867,16 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1,
+        1,
+        3,
+        5,
+        7
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Rn",
@@ -1211,7 +1890,13 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Fr",
@@ -1226,7 +1911,14 @@
       "activity": null,
       "groups": [
         "kiem"
-      ]
+      ],
+      "oxidation_states": [
+        1
+      ],
+      "ion_charges": [
+        1
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ra",
@@ -1241,7 +1933,14 @@
       "activity": null,
       "groups": [
         "kiem_tho"
-      ]
+      ],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ac",
@@ -1254,7 +1953,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Th",
@@ -1267,7 +1973,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4
+      ],
+      "ion_charges": [
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pa",
@@ -1281,7 +1994,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4,
+        5
+      ],
+      "ion_charges": [
+        4,
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "U",
@@ -1297,7 +2019,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ion_charges": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Np",
@@ -1314,7 +2049,22 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "ion_charges": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Pu",
@@ -1330,7 +2080,20 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "ion_charges": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Am",
@@ -1343,7 +2106,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cm",
@@ -1356,7 +2126,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Bk",
@@ -1370,7 +2147,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3,
+        4
+      ],
+      "ion_charges": [
+        3,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cf",
@@ -1383,7 +2169,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Es",
@@ -1396,7 +2189,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Fm",
@@ -1409,7 +2209,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Md",
@@ -1423,7 +2230,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "No",
@@ -1437,7 +2253,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        3
+      ],
+      "ion_charges": [
+        2,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Lr",
@@ -1450,7 +2275,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Rf",
@@ -1463,7 +2295,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        4
+      ],
+      "ion_charges": [
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Db",
@@ -1476,7 +2315,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        5
+      ],
+      "ion_charges": [
+        5
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Sg",
@@ -1489,7 +2335,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        6
+      ],
+      "ion_charges": [
+        6
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Bh",
@@ -1502,7 +2355,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        7
+      ],
+      "ion_charges": [
+        7
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Hs",
@@ -1515,7 +2375,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        8
+      ],
+      "ion_charges": [
+        8
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Mt",
@@ -1528,7 +2395,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        3
+      ],
+      "ion_charges": [
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ds",
@@ -1542,7 +2416,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Rg",
@@ -1556,7 +2439,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Cn",
@@ -1569,7 +2461,14 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2
+      ],
+      "ion_charges": [
+        2
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Nh",
@@ -1583,7 +2482,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Fl",
@@ -1597,7 +2505,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Mc",
@@ -1611,7 +2528,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        1,
+        3
+      ],
+      "ion_charges": [
+        1,
+        3
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Lv",
@@ -1625,7 +2551,16 @@
       "type": "kim_loai",
       "type_label": "Kim loại",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        2,
+        4
+      ],
+      "ion_charges": [
+        2,
+        4
+      ],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Ts",
@@ -1641,7 +2576,16 @@
       "type": "phi_kim",
       "type_label": "Phi kim",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -1,
+        1,
+        3,
+        5,
+        7
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     },
     {
       "symbol": "Og",
@@ -1655,7 +2599,13 @@
       "type": "khi_hiem",
       "type_label": "Khí hiếm",
       "activity": null,
-      "groups": []
+      "groups": [],
+      "oxidation_states": [
+        -2,
+        2
+      ],
+      "ion_charges": [],
+      "property_basis": "sgk_oxidation_sign"
     }
   ]
 }

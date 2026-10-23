@@ -22,6 +22,7 @@ from app.core.constants import (
     STATES,
 )
 from app.core.formula import FormulaError, parse_formula
+from app.core.species import derived_compound_fields, element_oxidation_states
 from app.core.numbers import to_fraction
 from app.repositories.json_store import JsonStore
 from app.services.errors import KnowledgeError
@@ -142,7 +143,7 @@ class KnowledgeBase:
         if symbol in ALKALINE_EARTH and "kiem_tho" not in groups:
             groups.append("kiem_tho")
         mass_value = int(mass) if mass.is_integer() else mass
-        return {
+        record = {
             "symbol": symbol,
             "name": name,
             "z": atomic_number,
@@ -153,6 +154,11 @@ class KnowledgeBase:
             "activity": activity,
             "groups": groups,
         }
+        states = element_oxidation_states(record)
+        record["oxidation_states"] = states
+        record["ion_charges"] = [value for value in states if value > 0] if element_type == "kim_loai" else []
+        record["property_basis"] = "sgk_oxidation_sign"
+        return record
 
     def _recalculate_compound_masses(self, element: dict) -> None:
         elements = self.element_map()
@@ -222,7 +228,7 @@ class KnowledgeBase:
             charge = int(payload.get("charge") if payload.get("charge") is not None else 0)
         except (TypeError, ValueError):
             raise KnowledgeError("Điện tích phải là số nguyên.")
-        return {
+        record = {
             "formula": formula,
             "name": name,
             "class": compound_class,
@@ -236,6 +242,15 @@ class KnowledgeBase:
             "charge": charge,
             "molar_mass": _molar_mass_number(composition, elements),
         }
+        derived = derived_compound_fields(record, elements)
+        record["soluble"] = derived["soluble"]
+        record["soluble_label"] = SOLUBILITY_LABELS.get(derived["soluble"], derived["soluble"])
+        record["ions"] = derived["ions"]
+        record["acid_radical"] = derived["acid_radical"]
+        record["metal_valence"] = derived["metal_valence"]
+        record["oxidation"] = derived["oxidation"]
+        record["soluble_basis"] = derived["soluble_basis"]
+        return record
 
     # --- Phản ứng ---
     def create_reaction(self, payload: dict) -> dict:

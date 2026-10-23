@@ -1,0 +1,8 @@
+{
+  "oxidation": "Số oxi hóa gắn dấu cho hóa trị đã có trong elements.json theo quy tắc SGK Hóa học 10: kim loại dương; oxi −2, peoxit −1; hiđro +1, hiđrua kim loại −1; flo −1. Cacbon thêm −4 vì đó là số oxi hóa của C trong hidrocacbon (SGK), không phải số đo mới. Không thêm bậc oxi hóa ngoài các hóa trị đã lưu, trừ hai ngoại lệ H và O vừa nêu.",
+  "ions": "Cation, anion và gốc axit suy từ công thức bằng bảng gốc axit SGK (SO4, NO3, CO3, PO4, Cl, ...). Gốc dài được thử trước gốc ngắn. Hóa trị kim loại trong oxit là (2 × số oxi) / số kim loại.",
+  "mixed_oxides": "Fe3O4 và Co3O4 là oxit kép FeO·Fe2O3 theo SGK, hóa trị 2 và 3. Không gán một số oxi hóa duy nhất cho kim loại.",
+  "superoxide": "KO2: kali +1, nhóm O2 có điện tích −1 (superoxit, SGK).",
+  "solubility": "Chỉ điền tính tan khi hồ sơ đang là chua_ro, theo bảng tính tan SGK: muối Na, K, NH4 và nitrat tan; halogenua tan trừ Ag, Pb, Hg(I); sunfat tan trừ Ba, Pb, Sr, Ra không tan và Ca, Ag ít tan; sunfua, cacbonat, photphat, sunfit, silicat theo bảng; hiđroxit kiềm tan, kiềm thổ ít tan trừ Be, Mg không tan. Giá trị đã biên soạn không bị ghi đè.",
+  "activity": "Dãy hoạt động dùng cho luật là H5 trong heuristics.json (SGK). Trường activity của nguyên tố chỉ là phương án dự phòng. Cr và Mn không được gán số thứ tự giả."
+}

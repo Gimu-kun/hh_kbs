@@ -143,6 +143,8 @@ def render_chain(result: dict, templates: dict[str, str]) -> list[str]:
             block.append(_line(templates, "chain.rule", rule_id=item["rule_id"], rule_text=item["rule_text"]))
         else:
             block.append(_line(templates, "chain.no_rule"))
+        if item.get("review_status") == "pending":
+            block.append(_line(templates, "chain.pending", review_id=item.get("review_id") or ""))
         if item["byproducts"]:
             block.append(_line(templates, "chain.byproducts", byproducts=", ".join(item["byproducts"])))
         steps.append("\n".join(block))

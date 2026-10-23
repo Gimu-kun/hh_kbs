@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Header, HTTPException, Query
 
+from app.core.audit import audit_reference
+from app.services.auth import change_password, login, logout, user_for_token
 from app.services.errors import KnowledgeError
 from app.services.inference import InferenceEngine
 from app.services.knowledge_base import KnowledgeBase
@@ -90,14 +92,23 @@ def _register(prefix, collection_name, create_name, update_name, delete_name) ->
             raise HTTPException(404, f"Không tìm thấy '{item_id}'.")
         return item
 
-    def create_item(payload: dict):
-        return _run(lambda: getattr(kb(), create_name)(payload))
+    def create_item(payload: dict, authorization: str | None = Header(None)):
+        _admin(authorization)
+        result = _run(lambda: getattr(kb(), create_name)(payload))
+        engine().invalidate_generation()
+        return result
 
-    def update_item(item_id: str, payload: dict):
-        return _run(lambda: getattr(kb(), update_name)(item_id, payload))
+    def update_item(item_id: str, payload: dict, authorization: str | None = Header(None)):
+        _admin(authorization)
+        result = _run(lambda: getattr(kb(), update_name)(item_id, payload))
+        engine().invalidate_generation()
+        return result
 
-    def delete_item(item_id: str):
-        return _run(lambda: getattr(kb(), delete_name)(item_id))
+    def delete_item(item_id: str, authorization: str | None = Header(None)):
+        _admin(authorization)
+        result = _run(lambda: getattr(kb(), delete_name)(item_id))
+        engine().invalidate_generation()
+        return result
 
     sub.add_api_route("", list_items, methods=["GET"], operation_id=f"list_{prefix}")
     sub.add_api_route("", create_item, methods=["POST"], status_code=201, operation_id=f"create_{prefix}")
@@ -141,6 +152,7 @@ def solve_chain(payload: dict):
             str(payload.get("start") or ""),
             str(payload.get("target") or ""),
             int(payload.get("max_steps") or 6),
+            bool(payload.get("allow_pending")),
         )
     )
 
@@ -158,3 +170,117 @@ def solve_quantity(payload: dict):
     }
     """
     return _run(lambda: engine().quantity(payload))
+
+
+def _bearer(authorization: str | None) -> str:
+    if authorization and authorization.lower().startswith("bearer "):
+        return authorization.split(" ", 1)[1].strip()
+    return ""
+
+
+def _admin(authorization: str | None = None, *, allow_password_change: bool = False) -> str:
+    record = user_for_token(_bearer(authorization))
+    if record is None:
+        raise HTTPException(401, "Cần đăng nhập admin.")
+    if record["scope"] != "full" and not allow_password_change:
+        raise HTTPException(403, "Cần đổi mật khẩu trước khi dùng chức năng quản trị.")
+    return record["username"]
+
+
+@router.post("/auth/login", tags=["admin"], operation_id="admin_login")
+def admin_login(payload: dict):
+    """Đăng nhập admin. Mật khẩu lần đầu lấy từ biến môi trường KBS_ADMIN_PASSWORD."""
+    return _run(lambda: login(str(payload.get("username") or ""), str(payload.get("password") or "")))
+
+
+@router.post("/auth/logout", tags=["admin"], operation_id="admin_logout")
+def admin_logout(authorization: str | None = Header(None)):
+    """Thu hồi token hiện tại."""
+    return logout(_bearer(authorization))
+
+
+@router.post("/auth/change-password", tags=["admin"], operation_id="admin_change_password")
+def admin_change_password(payload: dict, authorization: str | None = Header(None)):
+    """Đổi mật khẩu. Body: {"current_password": "...", "new_password": "..."}."""
+    username = _admin(authorization, allow_password_change=True)
+    return _run(
+        lambda: change_password(
+            username,
+            str(payload.get("current_password") or ""),
+            str(payload.get("new_password") or ""),
+        )
+    )
+
+
+@router.get("/admin/reviews", tags=["admin"], operation_id="list_reviews")
+def list_reviews(status: str | None = None, authorization: str | None = Header(None)):
+    """Danh sách phản ứng chờ duyệt. status: pending, approved hoặc rejected."""
+    _admin(authorization)
+    items = engine().reviews.list(status)
+    return {"count": len(items), "items": items}
+
+
+@router.post("/admin/reviews/sync", tags=["admin"], operation_id="sync_reviews")
+def sync_reviews(authorization: str | None = Header(None)):
+    """Đưa mọi phản ứng sinh ra ngoài bộ tham chiếu vào hàng chờ duyệt."""
+    _admin(authorization)
+    current = engine()
+    generated = [
+        item
+        for item in current._generated_reactions()
+        if not (set(item["reactants"]) & set(item["products"]))
+    ]
+    added = current.reviews.record_extras(generated, source="pool")
+    report = audit_reference(
+        current.reviews.reference_items(),
+        current.knowledge.rules.list(),
+        current._catalog(),
+    )
+    return {
+        "added": added,
+        "pending": len(current.reviews.list("pending")),
+        "correct": report["correct"],
+        "loose": report["loose"],
+        "single": report["single"],
+        "wrong": report["wrong"],
+        "missing": report["missing"],
+        "extra": report["extra"],
+        "total": report["total"],
+        "rate": report["rate"],
+        "loose_rate": report["loose_rate"],
+        "single_rate": report["single_rate"],
+    }
+
+
+@router.post("/admin/reviews/{review_id}/approve", tags=["admin"], operation_id="approve_review")
+def approve_review(review_id: str, payload: dict | None = None, authorization: str | None = Header(None)):
+    """Duyệt phản ứng. Body: {"note": "..."}."""
+    _admin(authorization)
+    note = str((payload or {}).get("note") or "")
+    result = _run(lambda: engine().reviews.approve(review_id, note))
+    engine().invalidate_generation()
+    return result
+
+
+@router.post("/admin/reviews/{review_id}/reject", tags=["admin"], operation_id="reject_review")
+def reject_review(review_id: str, payload: dict | None = None, authorization: str | None = Header(None)):
+    """Từ chối phản ứng. Body: {"note": "...", "rule_fault": true}.
+
+    rule_fault = true khi từ chối vì luật sinh ra phản ứng sai; rule_id được giữ lại để sửa luật.
+    Phản ứng bị từ chối không được bộ suy diễn dùng lại.
+    """
+    _admin(authorization)
+    body = payload or {}
+    result = _run(lambda: engine().reviews.reject(review_id, str(body.get("note") or ""), bool(body.get("rule_fault"))))
+    engine().invalidate_generation()
+    return result
+
+
+@router.post("/admin/reviews/{review_id}/reopen", tags=["admin"], operation_id="reopen_review")
+def reopen_review(review_id: str, payload: dict | None = None, authorization: str | None = Header(None)):
+    """Mở lại phản ứng đã từ chối. Lịch sử rule_fault được giữ."""
+    _admin(authorization)
+    note = str((payload or {}).get("note") or "")
+    result = _run(lambda: engine().reviews.reopen(review_id, note))
+    engine().invalidate_generation()
+    return result

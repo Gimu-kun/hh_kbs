@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "username": "admin",
+      "role": "admin",
+      "must_change_password": true
+    }
+  ]
+}
