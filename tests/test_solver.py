@@ -16,8 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture(scope="module")
-def engine():
-    return InferenceEngine(KnowledgeBase(ROOT / "data"))
+def engine(tmp_path_factory):
+    dest = tmp_path_factory.mktemp("solver") / "data"
+    shutil.copytree(ROOT / "data", dest)
+    return InferenceEngine(KnowledgeBase(dest))
 
 
 def test_formula_parentheses():
@@ -133,6 +135,7 @@ def client(tmp_path):
     shutil.copytree(ROOT / "data", data_copy)
     monkeypatch = pytest.MonkeyPatch()
     monkeypatch.setenv("KBS_DATA_DIR", str(data_copy))
+    monkeypatch.setenv("KBS_ADMIN_PASSWORD", "kbs-test-pass")
     with TestClient(app) as test_client:
         yield test_client
     monkeypatch.undo()
@@ -154,9 +157,9 @@ def test_api_solvers_and_crud(client):
     assert chain.status_code == 200
     body = chain.json()
     assert body["found"] is True
-    # H2 xếp điều kiện đơn giản trước. CaCO3 + axit rồi muối + bazơ (không đun)
-    # ngắn và nhẹ điều kiện hơn CaCO3 --t°→ CaO → Ca(OH)2, nên lời giải không còn bắt buộc có t°.
-    # Nhiệt phân cacbonat vẫn do luật L16 sinh ra.
+    assert any("CaO" in step["products"] for step in body["reactions"])
+    assert any(step["condition"] == "HEAT" for step in body["reactions"])
+    assert "t°" in body["explanation"]
     assert "Khớp luật" in body["explanation"]
 
     quantity = client.post(
@@ -170,8 +173,25 @@ def test_api_solvers_and_crud(client):
     assert quantity.status_code == 200
     assert quantity.json()["find"]["display"] == "4,48 lít"
 
+    anonymous = client.post(
+        "/api/v1/elements",
+        json={"symbol": "Xx", "name": "Thử nghiệm", "z": 999, "mass": 10, "valence": [1], "type": "phi_kim"},
+    )
+    assert anonymous.status_code == 401
+    login = client.post("/api/v1/auth/login", json={"username": "admin", "password": "kbs-test-pass"})
+    assert login.status_code == 200
+    first = {"Authorization": f"Bearer {login.json()['token']}"}
+    changed = client.post(
+        "/api/v1/auth/change-password",
+        headers=first,
+        json={"current_password": "kbs-test-pass", "new_password": "kbs-test-pass-2"},
+    )
+    assert changed.status_code == 200
+    again = client.post("/api/v1/auth/login", json={"username": "admin", "password": "kbs-test-pass-2"})
+    headers = {"Authorization": f"Bearer {again.json()['token']}"}
     created = client.post(
         "/api/v1/elements",
+        headers=headers,
         json={"symbol": "Xx", "name": "Thử nghiệm", "z": 999, "mass": 10, "valence": [1], "type": "phi_kim"},
     )
     assert created.status_code == 201
@@ -179,12 +199,14 @@ def test_api_solvers_and_crud(client):
 
     duplicated = client.post(
         "/api/v1/elements",
+        headers=headers,
         json={"symbol": "Xx", "name": "Thử nghiệm", "z": 999, "mass": 10, "valence": [1], "type": "phi_kim"},
     )
     assert duplicated.status_code == 409
 
     compound = client.post(
         "/api/v1/compounds",
+        headers=headers,
         json={
             "formula": "Xx2",
             "name": "Đơn chất thử",
@@ -195,10 +217,10 @@ def test_api_solvers_and_crud(client):
         },
     )
     assert compound.status_code == 201
-    blocked = client.delete("/api/v1/elements/Xx")
+    blocked = client.delete("/api/v1/elements/Xx", headers=headers)
     assert blocked.status_code == 409
-    assert client.delete("/api/v1/compounds/Xx2").status_code == 200
-    assert client.delete("/api/v1/elements/Xx").status_code == 200
+    assert client.delete("/api/v1/compounds/Xx2", headers=headers).status_code == 200
+    assert client.delete("/api/v1/elements/Xx", headers=headers).status_code == 200
 
     bad = client.post("/api/v1/solve/balance", json={"equation": "H2O → H2"})
     assert bad.status_code == 400

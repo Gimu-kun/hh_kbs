@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from app.core.forward import propose, reaction_signature
+from app.core.forward import primary_candidate, propose, reaction_signature
 from app.core.species import Catalog
 
 
@@ -26,6 +26,8 @@ def audit_reference(reactions: list[dict], rules: list[dict], catalog: Catalog) 
         by_input[key].add(tuple(sorted(reaction["products"])))
 
     correct = 0
+    loose = 0
+    single = 0
     wrong = []
     missing = []
     extra_seen: set[tuple] = set()
@@ -35,12 +37,17 @@ def audit_reference(reactions: list[dict], rules: list[dict], catalog: Catalog) 
     for reaction in reactions:
         condition = reaction.get("condition") or "NONE"
         candidates = propose(reaction["reactants"], condition, rules, catalog)
-        target = reaction_signature(reaction["reactants"], reaction["products"], condition)
-        produced = {reaction_signature(item["reactants"], item["products"], item["condition"]): item for item in candidates}
-        if target in produced:
+        target_products = tuple(sorted(reaction["products"]))
+        produced_sets = {tuple(sorted(item["products"])) for item in candidates}
+        if target_products in produced_sets:
+            loose += 1
+        if len(produced_sets) == 1 and target_products in produced_sets:
+            single += 1
+        # Đúng khi ứng viên ưu tiên cao nhất khớp. Hòa ưu tiên thì ít sản phẩm hơn, rồi thứ tự công thức.
+        chosen = primary_candidate(candidates)
+        if chosen and tuple(sorted(chosen["products"])) == target_products:
             correct += 1
-        elif produced:
-            sample = next(iter(produced.values()))
+        elif chosen:
             wrong.append(
                 {
                     "id": reaction.get("id"),
@@ -48,8 +55,8 @@ def audit_reference(reactions: list[dict], rules: list[dict], catalog: Catalog) 
                     "type": reaction.get("type"),
                     "reactants": reaction["reactants"],
                     "expected": reaction["products"],
-                    "got": sample["products"],
-                    "rule_id": sample.get("rule_id"),
+                    "got": chosen["products"],
+                    "rule_id": chosen.get("rule_id"),
                 }
             )
         else:
@@ -88,10 +95,14 @@ def audit_reference(reactions: list[dict], rules: list[dict], catalog: Catalog) 
     return {
         "total": total,
         "correct": correct,
+        "loose": loose,
+        "single": single,
         "wrong": len(wrong),
         "missing": len(missing),
         "extra": len(extras),
         "rate": correct / total if total else 0,
+        "loose_rate": loose / total if total else 0,
+        "single_rate": single / total if total else 0,
         "missing_groups": grouped,
         "wrong_examples": wrong[:12],
         "extras": extras,

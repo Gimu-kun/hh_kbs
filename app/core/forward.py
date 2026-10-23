@@ -285,21 +285,28 @@ def build_neutralization(species: list[Species], catalog: Catalog, _args: dict, 
         salt = catalog.salt(base.cation.formula, base.cation.charge, anion_name)
         if salt:
             results.append([salt, "H2O"])
-    return results
+    # Không nêu tỉ lệ mol thì lấy muối trung hòa, là phương án ghi trước.
+    return results[:1]
 
 
 def build_acid_salt(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
-    """Axit proton hóa dần muối của gốc đa bazơ (tạo muối axit)."""
+    """Axit nhiều nấc proton hóa một nấc muối của gốc đa bazơ. HCl không tạo M(HCO3)2."""
     acid = _pick(species, "acid")
     salt = _pick(species, "salt")
     if acid is None or salt is None or salt.anion is None or salt.cation is None or acid.anion is None:
+        return []
+    if acid.formula not in {"H2SO4", "H2SO3", "H2S", "H3PO4", "H3PO3", "H2CO3"}:
+        return []
+    if salt.anion.formula == "SO4" and acid.formula != "H2SO4":
+        return []
+    if salt.anion.formula in {"CO3", "HCO3", "SO3", "S"} and acid.formula in {"HCl", "HBr", "HI", "HNO3"}:
         return []
     ladder = {
         "CO3": ["HCO3"],
         "SO3": ["HSO3"],
         "SO4": ["HSO4"],
         "S": ["HS"],
-        "PO4": ["HPO4", "H2PO4"],
+        "PO4": ["H2PO4"],
         "HPO4": ["H2PO4"],
     }
     results = []
@@ -308,6 +315,7 @@ def build_acid_salt(species: list[Species], catalog: Catalog, _args: dict, _cond
         partner = _ion_product(catalog, salt.cation.formula, salt.cation.charge, acid.anion.formula)
         if acid_salt and partner:
             results.append(_collapse([acid_salt, *partner]))
+            break
     return results
 
 
@@ -325,12 +333,18 @@ def build_deprotonate(species: list[Species], catalog: Catalog, _args: dict, _co
     results = []
     if salt.cation.formula == base.cation.formula and own:
         results.append([own, "H2O"])
+    if (
+        salt.cation.formula in {"Na", "K"}
+        and base.cation.formula == "Ca"
+        and anion in {"CO3", "HPO4", "PO4"}
+    ):
+        earth = catalog.salt(base.cation.formula, base.cation.charge, anion)
+        alkali = catalog.salt(salt.cation.formula, salt.cation.charge, "OH")
+        if earth and alkali:
+            return [[earth, alkali, "H2O"]]
     if other and own and salt.cation.formula != base.cation.formula:
         results.append(_collapse([other, own, "H2O"]))
-        hydroxide = catalog.salt(salt.cation.formula, salt.cation.charge, "OH")
-        if hydroxide:
-            results.append(_collapse([other, hydroxide, "H2O"]))
-    return results
+    return results[:1]
 
 
 def build_metal_acid_hydrogen(species: list[Species], catalog: Catalog, args: dict, _condition: str) -> list[list[str]]:
@@ -370,7 +384,7 @@ def build_metal_nitric(species: list[Species], catalog: Catalog, args: dict, _co
             results.append([salt, "NH4NO3", "H2O"])
         else:
             results.append([salt, mode, "H2O"])
-    return results
+    return results[:1]
 
 
 def build_metal_conc_sulfuric(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -381,8 +395,8 @@ def build_metal_conc_sulfuric(species: list[Species], catalog: Catalog, _args: d
     salt = catalog.salt(metal.element, valence, "SO4") if valence else None
     if not salt:
         return []
-    modes = ["SO2", "S", "H2S"] if _activity_before(catalog, metal.element, "H") else ["SO2"]
-    return [[salt, mode, "H2O"] for mode in modes]
+    # H2SO4 đặc không sinh H2S trong bộ sản phẩm chọn cho lời giải. Sản phẩm khử đại diện là SO2.
+    return [[salt, "SO2", "H2O"]]
 
 
 def build_acid_oxide(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -442,7 +456,13 @@ def build_acidic_oxide_water(species: list[Species], catalog: Catalog, _args: di
     oxide = _pick(species, "oxide")
     if oxide is None or oxide.formula == "SiO2" or oxide.oxide_kind != "acidic":
         return []
-    return [[acid.formula] for acid in _anhydride_acids(oxide, catalog)]
+    acids = _anhydride_acids(oxide, catalog)
+    common = {"H3PO4", "H2SO4", "H2SO3", "HNO3", "H2CO3", "H3BO3", "H2SiO3", "H2CrO4", "HClO", "HClO3"}
+    preferred = [acid for acid in acids if acid.formula in common]
+    element = oxide.element
+    matched = [acid for acid in acids if element and acid.composition.get(element) == oxide.composition.get(element)]
+    chosen = preferred or matched or acids
+    return [[chosen[0].formula]] if chosen else []
 
 
 def build_oxide_oxide(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -465,28 +485,60 @@ def build_acidic_oxide_base(species: list[Species], catalog: Catalog, _args: dic
     base = _pick(species, "base")
     if oxide is None or base is None or base.cation is None or oxide.oxide_kind != "acidic":
         return []
-    results = []
-    for acid in _anhydride_acids(oxide, catalog):
+    common = {"H3PO4", "H2SO4", "H2SO3", "H2CO3", "H3BO3", "H2SiO3", "H2CrO4"}
+    acids = _anhydride_acids(oxide, catalog)
+    ordered = [acid for acid in acids if acid.formula in common] + [acid for acid in acids if acid.formula not in common]
+    for acid in ordered:
         if acid.anion is None:
             continue
         full = catalog.salt(base.cation.formula, base.cation.charge, acid.anion.formula)
         if full:
-            results.append([full, "H2O"])
-        bare = {element: count for element, count in ANION_COMPOSITION.get(acid.anion.formula, {}).items() if element != "H"}
-        for anion_name, composition, _charge in ANIONS:
-            if "H" not in composition:
-                continue
-            without_hydrogen = {element: count for element, count in composition.items() if element != "H"}
-            if without_hydrogen != bare:
-                continue
-            salt = catalog.salt(base.cation.formula, base.cation.charge, anion_name)
-            if salt:
-                results.append([salt])
-                results.append([salt, "H2O"])
-    return results
+            return [[full, "H2O"]]
+    return []
 
 
-def build_binary(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+_OXIDE_PREFERRED = {
+    "Fe": "Fe3O4",
+    "Cr": "Cr2O3",
+    "Mn": "MnO2",
+    "Pb": "PbO",
+    "Cu": "CuO",
+    "Sn": "SnO2",
+    "Al": "Al2O3",
+    "Mg": "MgO",
+    "Zn": "ZnO",
+    "Ca": "CaO",
+    "Na": "Na2O2",
+    "K": "KO2",
+}
+
+
+def _binary_formulas(left: Species, right: Species, catalog: Catalog) -> list[str]:
+    elements = {left.element, right.element}
+    banned = {left.formula, right.formula}
+    found = []
+    for candidate in catalog.species.values():
+        if candidate.formula in banned:
+            continue
+        if set(candidate.composition) <= elements and left.element in candidate.composition and right.element in candidate.composition:
+            found.append(candidate.formula)
+    return found
+
+
+def _halide_by_valence(formulas: list[str], metal: str, catalog: Catalog, high: bool) -> str | None:
+    ranked = []
+    for formula in formulas:
+        species = catalog.get(formula)
+        if species and species.cation and species.cation.formula == metal:
+            ranked.append((species.cation.charge, formula))
+    if not ranked:
+        return sorted(formulas)[0] if formulas else None
+    ranked.sort()
+    return ranked[-1 if high else 0][1]
+
+
+def build_binary(species: list[Species], catalog: Catalog, _args: dict, condition: str) -> list[list[str]]:
+    """Một hợp chất nhị tố. Halogen mạnh cho hóa trị cao, lưu huỳnh với sắt cho FeS, oxi theo oxit thường gặp."""
     if len(species) != 2:
         return []
     left, right = species
@@ -494,17 +546,51 @@ def build_binary(species: list[Species], catalog: Catalog, _args: dict, _conditi
         return []
     if not left.element or not right.element or left.element == right.element:
         return []
-    elements = {left.element, right.element}
-    formulas = {left.formula, right.formula}
-    if "O2" in formulas and elements.intersection({"Au", "Pt"}):
+    names = {left.formula, right.formula}
+    if "O2" in names and {left.element, right.element}.intersection({"Au", "Pt"}):
         return []
-    results = []
-    for candidate in catalog.species.values():
-        if candidate.formula in formulas:
-            continue
-        if set(candidate.composition) <= elements and left.element in candidate.composition and right.element in candidate.composition:
-            results.append([candidate.formula])
-    return results
+    if names == {"H2", "O2"}:
+        return [["H2O"]] if "H2O" in catalog.compounds else []
+    if names == {"N2", "O2"}:
+        # Dữ liệu ghi tia lửa điện bằng điều kiện đun. Không sinh NO ở điều kiện thường.
+        if condition in {"HEAT", "OTHER"} and "NO" in catalog.compounds:
+            return [["NO"]]
+        return []
+    formulas = _binary_formulas(left, right, catalog)
+    if not formulas:
+        return []
+    metal = left.element if left.kind == "metal" else right.element if right.kind == "metal" else None
+    nonmetal = left.element if left.kind == "nonmetal" else right.element if right.kind == "nonmetal" else None
+    if names == {"C", "O2"} and "CO2" in formulas:
+        return [["CO2"]]
+    if names == {"S", "O2"} and "SO2" in formulas:
+        return [["SO2"]]
+    if names == {"P", "O2"}:
+        for formula in ("P2O5", "P4O10"):
+            if formula in formulas:
+                return [[formula]]
+    if metal and nonmetal == "O":
+        preferred = _OXIDE_PREFERRED.get(metal)
+        if preferred in formulas:
+            return [[preferred]]
+        chosen = _halide_by_valence(formulas, metal, catalog, high=True)
+        return [[chosen]] if chosen else []
+    if metal and nonmetal in {"Cl", "Br"}:
+        chosen = _halide_by_valence(formulas, metal, catalog, high=True)
+        return [[chosen]] if chosen else []
+    if metal and nonmetal == "I":
+        chosen = _halide_by_valence(formulas, metal, catalog, high=False)
+        return [[chosen]] if chosen else []
+    if metal and nonmetal == "S":
+        if metal == "Fe" and "FeS" in formulas:
+            return [["FeS"]]
+        if metal == "Cu" and "CuS" in formulas:
+            return [["CuS"]]
+        chosen = _halide_by_valence(formulas, metal, catalog, high=False)
+        return [[chosen]] if chosen else []
+    if len(formulas) == 1:
+        return [[formulas[0]]]
+    return [[sorted(formulas)[0]]]
 
 
 def build_hydroxide_heat(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -548,7 +634,10 @@ def build_nitrate_heat(species: list[Species], catalog: Catalog, _args: dict, _c
     if cation == "NH4":
         return [["N2O", "H2O"]]
     charge = salt.cation.charge
-    if cation == "Li" or _activity_at_least(catalog, cation, "Mg") and _activity_at_most(catalog, cation, "Cu"):
+    groups = set((catalog.elements.get(cation) or {}).get("groups") or [])
+    if cation == "Li" or "kiem_tho" in groups or (
+        _activity_at_least(catalog, cation, "Mg") and _activity_at_most(catalog, cation, "Cu")
+    ):
         oxide = catalog.oxide(cation, charge)
         return [[oxide, "NO2", "O2"]] if oxide else []
     if _activity_before(catalog, cation, "Mg"):
@@ -688,6 +777,14 @@ def build_reduce_oxide(species: list[Species], catalog: Catalog, args: dict, _co
     return [[metal, "CO2"], [metal, "CO"]]
 
 
+def _prefer_hydroxo(formulas: list[str]) -> str | None:
+    if not formulas:
+        return None
+    hydroxy = [formula for formula in formulas if "(OH)" in formula or "[OH]" in formula]
+    pool = hydroxy or formulas
+    return sorted(pool, key=lambda formula: (-formula.count("OH"), formula))[0]
+
+
 def _complexes(catalog: Catalog, metal: str, alkali: str, banned: set[str]) -> list[str]:
     found = []
     for candidate in catalog.species.values():
@@ -708,11 +805,10 @@ def build_amphoteric_alkali(species: list[Species], catalog: Catalog, _args: dic
     if amph is None or base is None or base.cation is None:
         return []
     metal = _amphoteric_element(amph)
-    results = []
-    for formula in _complexes(catalog, metal or "", base.cation.formula, {base.formula, amph.formula}):
-        results.append([formula, "H2O"])
-        results.append([formula])
-    return results
+    chosen = _prefer_hydroxo(_complexes(catalog, metal or "", base.cation.formula, {base.formula, amph.formula}))
+    if not chosen:
+        return []
+    return [[chosen], [chosen, "H2O"]]
 
 
 def build_amphoteric_salt(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -725,11 +821,10 @@ def build_amphoteric_salt(species: list[Species], catalog: Catalog, _args: dict,
     partner = catalog.salt(base.cation.formula, base.cation.charge, salt.anion.formula)
     if not partner:
         return []
-    results = []
-    for formula in _complexes(catalog, salt.cation.formula, base.cation.formula, {salt.formula, base.formula}):
-        results.append([formula, partner])
-        results.append([formula, partner, "H2O"])
-    return results
+    chosen = _prefer_hydroxo(_complexes(catalog, salt.cation.formula, base.cation.formula, {salt.formula, base.formula}))
+    if not chosen:
+        return []
+    return [[chosen, partner], [chosen, partner, "H2O"]]
 
 
 def build_amphoteric_metal(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -740,17 +835,14 @@ def build_amphoteric_metal(species: list[Species], catalog: Catalog, _args: dict
     if metal.element not in AMPHOTERIC_METALS:
         return []
     banned = {item.formula for item in species}
-    results = []
-    for formula in _complexes(catalog, metal.element, base.cation.formula, banned):
-        results.append([formula, "H2"])
-        results.append([formula, "H2", "H2O"])
-    return results
+    chosen = _prefer_hydroxo(_complexes(catalog, metal.element, base.cation.formula, banned))
+    return [[chosen, "H2"]] if chosen else []
 
 
 def build_nonmetal_oxidation(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
     simple = next((item for item in species if item.kind == "nonmetal"), None)
     acid = _pick(species, "acid")
-    if simple is None or acid is None or simple.element is None:
+    if simple is None or acid is None or simple.element not in {"C", "S", "P"}:
         return []
     best_oxidation = None
     chosen: list[Species] = []
@@ -765,34 +857,32 @@ def build_nonmetal_oxidation(species: list[Species], catalog: Catalog, _args: di
             chosen.append(candidate)
     if not chosen:
         return []
+    common = {"H3PO4", "H2SO4", "H2SO3", "SO2", "CO2"}
+    ordered = [item for item in chosen if item.formula in common] or chosen[:1]
+    candidate = ordered[0]
     reduced = "NO2" if acid.formula == "HNO3" else "SO2"
-    results = []
-    for candidate in chosen:
-        if acid.formula == "H2SO4" and candidate.formula == "H2SO4":
-            results.append(["SO2", "H2O"])
-            continue
-        product = candidate.formula
-        extras = [reduced, "H2O"]
-        if product == "H2CO3":
-            results.append(_collapse(["CO2", "H2O", *extras]))
-        elif product == "H2SO3":
-            results.append(_collapse(["SO2", "H2O", *extras]))
-        else:
-            results.append(_collapse([product, *extras]))
-    return results
+    product = candidate.formula
+    if acid.formula == "H2SO4" and product == "H2SO4":
+        return [["SO2", "H2O"]]
+    extras = [reduced, "H2O"]
+    if product == "H2CO3":
+        return [_collapse(["CO2", "H2O", *extras])]
+    if product == "H2SO3":
+        return [_collapse(["SO2", "H2O", *extras])]
+    return [_collapse([product, *extras])]
 
 
 def build_halide_sulfuric(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
     salt = _pick(species, "salt")
     if salt is None or salt.anion is None or salt.cation is None or salt.anion.formula not in {"Cl", "Br", "I"}:
         return []
+    if salt.cation.formula == "Fe" and salt.cation.charge < ( _valence_choice(catalog, "Fe", "high") or 3):
+        return []
     hydrogen = {"Cl": "HCl", "Br": "HBr", "I": "HI"}[salt.anion.formula]
-    results = []
-    for anion in ("HSO4", "SO4"):
-        product = catalog.salt(salt.cation.formula, salt.cation.charge, anion)
-        if product:
-            results.append([product, hydrogen])
-    return results
+    product = catalog.salt(salt.cation.formula, salt.cation.charge, "HSO4")
+    if product is None:
+        product = catalog.salt(salt.cation.formula, salt.cation.charge, "SO4")
+    return [[product, hydrogen]] if product else []
 
 
 def build_halogen_alkali(species: list[Species], catalog: Catalog, _args: dict, condition: str) -> list[list[str]]:
@@ -808,17 +898,11 @@ def build_halogen_alkali(species: list[Species], catalog: Catalog, _args: dict, 
     halide, hypo, halate = table[halogen.formula]
     cation, charge = base.cation.formula, base.cation.charge
     salt_halide = catalog.salt(cation, charge, halide)
-    salt_hypo = catalog.salt(cation, charge, hypo)
-    salt_halate = catalog.salt(cation, charge, halate)
-    results = []
-    # Lạnh cho hipohalogenit, nóng cho halogenat. Sinh cả hai để khớp các bản ghi dùng chung mã điều kiện.
-    if salt_halide and salt_hypo:
-        results.append([salt_halide, salt_hypo, "H2O"])
-    if salt_halide and salt_halate:
-        results.append([salt_halide, salt_halate, "H2O"])
-    if halogen.formula == "Cl2" and cation == "Ca" and "CaOCl2" in catalog.compounds:
-        results.append(["CaOCl2", "H2O"])
-    return results
+    hot = condition in {"HEAT", "CONC_HEAT", "DILUTE_HEAT", "HEAT_CATALYST", "HEAT_LIGHT"}
+    partner = catalog.salt(cation, charge, halate if hot else hypo)
+    if salt_halide and partner:
+        return [[salt_halide, partner, "H2O"]]
+    return []
 
 
 def build_no2_water(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -852,12 +936,9 @@ def build_chlorate_heat(species: list[Species], catalog: Catalog, _args: dict, _
         return []
     chloride = catalog.salt(salt.cation.formula, salt.cation.charge, "Cl")
     perchlorate = catalog.salt(salt.cation.formula, salt.cation.charge, "ClO4")
-    results = []
-    if chloride:
-        results.append([chloride, "O2"])
     if chloride and perchlorate:
-        results.append([chloride, perchlorate])
-    return results
+        return [[chloride, perchlorate]]
+    return [[chloride, "O2"]] if chloride else []
 
 
 def build_permanganate_heat(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -901,19 +982,20 @@ def build_sulfide_roast(species: list[Species], catalog: Catalog, _args: dict, _
         charge = _valence_choice(catalog, metal, "high") if metal else None
     if not metal:
         return []
-    results = []
-    candidates = []
-    if charge:
-        candidates.append(catalog.oxide(metal, charge))
+    if metal in {"Ag", "Hg", "Au", "Pt"} and metal in catalog.compounds:
+        return [[metal, "SO2"]]
+    oxide = None
+    if metal == "Fe":
+        oxide = "Fe2O3" if "Fe2O3" in catalog.compounds else None
+    preferred = _OXIDE_PREFERRED.get(metal) if metal != "Fe" else None
+    if oxide is None and preferred in catalog.compounds:
+        oxide = preferred
+    if oxide is None and charge:
+        oxide = catalog.oxide(metal, charge)
     high = _valence_choice(catalog, metal, "high")
-    if high:
-        candidates.append(catalog.oxide(metal, high))
-    for candidate in candidates:
-        if candidate and [candidate, "SO2"] not in results:
-            results.append([candidate, "SO2"])
-    if metal in catalog.compounds:
-        results.append([metal, "SO2"])
-    return results
+    if oxide is None and high:
+        oxide = catalog.oxide(metal, high)
+    return [[oxide, "SO2"]] if oxide else []
 
 
 def build_metal_co2(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -943,20 +1025,11 @@ def build_metal_water(species: list[Species], catalog: Catalog, _args: dict, con
             results.append([hydroxide, "H2"])
     if condition != "HEAT":
         return results
-    if element == "Fe":
-        results.append(["Fe3O4", "H2"])
-        results.append(["Fe2O3", "H2"])
-        oxide = catalog.oxide("Fe", 2)
-        if oxide:
-            results.append([oxide, "H2"])
-        return results
+    if element == "Fe" and "Fe3O4" in catalog.compounds:
+        return [["Fe3O4", "H2"]]
     if element in {"Mg", "Al", "Zn"} or element in AMPHOTERIC_METALS:
         hydroxide = catalog.salt(element, valence, "OH") if valence else None
-        oxide = catalog.oxide(element, valence) if valence else None
-        if hydroxide:
-            results.append([hydroxide, "H2"])
-        if oxide:
-            results.append([oxide, "H2"])
+        return [[hydroxide, "H2"]] if hydroxide else []
     return results
 
 
@@ -1015,19 +1088,29 @@ def build_reducing_salt(species: list[Species], catalog: Catalog, _args: dict, c
         salt = catalog.salt(metal, charge, salt_anion)
     if not salt:
         return []
-    results = []
     if anion in {"CO3", "HCO3"}:
-        results.append([salt, reduced, "CO2", "H2O"])
+        return [[salt, reduced, "CO2", "H2O"]]
     if anion == "S":
-        results.append([salt, "H2SO4", reduced, "H2O"])
-        results.append([salt, reduced, "H2O"])
-        results.append([salt, "SO2", "S", "H2O"])
+        sulfur_count = other.composition.get("S", 0)
+        metal_count = other.composition.get(metal, 0)
         sulfate = catalog.salt(metal, high, "SO4")
-        if acid.formula == "HNO3" and sulfate:
-            results.append([salt, sulfate, reduced, "H2O"])
-    if other.cation and charge is not None and high > charge and anion not in {"CO3", "HCO3", "S"}:
-        results.append([salt, reduced, "H2O"])
-    return results
+        valence_rises = charge is not None and high > charge
+        if acid.formula == "HNO3":
+            if metal == "Fe" or sulfur_count > metal_count or not valence_rises:
+                return [[salt, "H2SO4", reduced, "H2O"]]
+            if sulfate:
+                return [[salt, sulfate, reduced, "H2O"]]
+            return [[salt, reduced, "H2O"]]
+        products = [salt, "SO2", "H2O"]
+        if not valence_rises and sulfur_count <= metal_count and metal != "Fe":
+            products = [salt, "SO2", "S", "H2O"]
+        return [products]
+    if other.cation and charge is not None and high > charge:
+        if anion in {"Cl", "Br", "I"}:
+            hydrogen = {"Cl": "HCl", "Br": "HBr", "I": "HI"}[anion]
+            return [[salt, reduced, hydrogen, "H2O"]]
+        return [[salt, reduced, "H2O"]]
+    return []
 
 
 def build_halogen_water(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -1080,13 +1163,27 @@ def build_halide_hydrolysis(species: list[Species], catalog: Catalog, _args: dic
         return []
     element = next(item for item in composition if item != halogen)
     hydrogen = {"Cl": "HCl", "Br": "HBr", "I": "HI", "F": "HF"}[halogen]
-    results = []
-    for candidate in catalog.species.values():
-        if candidate.kind == "acid" and element in candidate.composition:
-            results.append([candidate.formula, hydrogen])
-        if candidate.kind == "oxide" and set(candidate.composition) <= {element, "O"} and element in candidate.composition:
-            results.append([candidate.formula, hydrogen])
-    return results
+    fixed = {
+        "PCl3": ["H3PO3", "HCl"],
+        "PCl5": ["H3PO4", "HCl"],
+        "PBr3": ["H3PO3", "HBr"],
+        "PBr5": ["H3PO4", "HBr"],
+    }
+    if compound.formula in fixed and all(item in catalog.compounds for item in fixed[compound.formula]):
+        return [fixed[compound.formula]]
+    acids = [
+        candidate.formula
+        for candidate in catalog.species.values()
+        if candidate.kind == "acid" and element in candidate.composition and set(candidate.composition) <= {element, "O", "H"}
+    ]
+    if acids:
+        return [[sorted(acids)[0], hydrogen]]
+    oxides = [
+        candidate.formula
+        for candidate in catalog.species.values()
+        if candidate.kind == "oxide" and set(candidate.composition) <= {element, "O"} and element in candidate.composition
+    ]
+    return [[oxides[0], hydrogen]] if oxides else []
 
 
 def build_peroxide_reaction(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -1120,7 +1217,7 @@ def build_h2s_oxygen(species: list[Species], _catalog: Catalog, _args: dict, _co
 def build_carbon_gases(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
     formulas = {item.formula for item in species}
     if formulas == {"C", "H2O"}:
-        return [["CO", "H2"], ["CO2", "H2"]]
+        return [["CO", "H2"]]
     if formulas == {"C", "CO2"}:
         return [["CO"]]
     return []
@@ -1188,7 +1285,10 @@ def build_permanganate(species: list[Species], catalog: Catalog, _args: dict, _c
                 oxidized = [high]
     if not oxidized:
         return []
-    return [oxidized + ["K2SO4", "MnSO4", "H2O"]]
+    products = oxidized + ["K2SO4", "MnSO4"]
+    if "H2O" not in formulas:
+        products.append("H2O")
+    return [products]
 
 
 def build_unstable_acid(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
@@ -1205,6 +1305,343 @@ def build_fixed(species: list[Species], _catalog: Catalog, args: dict, _conditio
     if sorted(item.formula for item in species) != sorted(expected):
         return []
     return [list(item) for item in args.get("products") or []]
+
+
+def build_phosphate_acid(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    """Axit mạnh đưa muối photphat tới đihiđrophotphat, đúng một bậc tỉ lệ trong SGK."""
+    acid = _pick(species, "acid")
+    salt = _pick(species, "salt")
+    if acid is None or salt is None or salt.anion is None or salt.cation is None or acid.anion is None:
+        return []
+    if salt.anion.formula not in {"PO4", "HPO4"} or acid.formula not in {"HCl", "HBr", "HI", "HNO3", "H2SO4"}:
+        return []
+    acid_salt = catalog.salt(salt.cation.formula, salt.cation.charge, "H2PO4")
+    partner = _ion_product(catalog, salt.cation.formula, salt.cation.charge, acid.anion.formula)
+    if acid_salt and partner:
+        return [_collapse([acid_salt, *partner])]
+    return []
+
+
+def build_chromate_equilibrium(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    acid = _pick(species, "acid")
+    base = _pick(species, "base")
+    salt = _pick(species, "salt")
+    if salt is None or salt.cation is None or salt.anion is None:
+        return []
+    if acid and salt.anion.formula == "CrO4" and acid.formula in {"H2SO4", "HCl", "HNO3"}:
+        dichromate = catalog.salt(salt.cation.formula, salt.cation.charge, "Cr2O7")
+        partner = catalog.salt(salt.cation.formula, salt.cation.charge, acid.anion.formula if acid.anion else "")
+        if dichromate and partner:
+            return [[dichromate, partner, "H2O"]]
+    if base and salt.anion.formula == "Cr2O7" and base.cation and base.formula in {"NaOH", "KOH", "Ba(OH)2"}:
+        chromate = catalog.salt(base.cation.formula, base.cation.charge, "CrO4")
+        if chromate:
+            return [[chromate, "H2O"]]
+    return []
+
+
+def build_chlorate_acid(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    salt = _pick(species, "salt")
+    acid = _pick(species, "acid")
+    if salt is None or acid is None or acid.formula != "HCl" or salt.anion is None or salt.anion.formula != "ClO3":
+        return []
+    if salt.cation is None:
+        return []
+    chloride = catalog.salt(salt.cation.formula, salt.cation.charge, "Cl")
+    return [[chloride, "Cl2", "H2O"]] if chloride else []
+
+
+def build_so2_oxidation(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"SO2", "O2"}:
+        return [["SO3"]]
+    return []
+
+
+def build_ammonia_burn(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"NH3", "O2"}:
+        return [["N2", "H2O"]]
+    return []
+
+
+def build_salt_hydrolysis(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    """Muối cation axit yếu bị thủy phân khi gặp CO3, S hoặc NH3."""
+    if not any(item.formula == "H2O" for item in species):
+        return []
+    salt = next((item for item in species if item.kind == "salt" and item.cation and item.anion), None)
+    if salt is None or salt.cation is None or salt.anion is None:
+        return []
+    cation, charge, anion = salt.cation.formula, salt.cation.charge, salt.anion.formula
+    hydroxide = catalog.salt(cation, charge, "OH")
+    if hydroxide is None:
+        return []
+    if any(item.formula == "NH3" for item in species) and cation in {"Al", "Fe", "Zn", "Cu", "Cr"}:
+        ammonium = catalog.salt("NH4", 1, anion)
+        return [[hydroxide, ammonium]] if ammonium else []
+    partner = next((item for item in species if item.kind == "salt" and item is not salt and item.cation and item.anion), None)
+    if partner is None or partner.anion is None or partner.cation is None:
+        return []
+    if cation not in {"Al", "Fe", "Cr"} or charge != 3:
+        return []
+    other = catalog.salt(partner.cation.formula, partner.cation.charge, anion)
+    if partner.anion.formula == "CO3" and other:
+        return [[hydroxide, "CO2", other]]
+    if partner.anion.formula == "S" and other:
+        return [[hydroxide, "H2S", other]]
+    return []
+
+
+def build_bisulfate(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    salts = [item for item in species if item.kind == "salt" and item.anion and item.cation]
+    if len(salts) != 2:
+        return []
+    bisulfate = next((item for item in salts if item.anion and item.anion.formula == "HSO4"), None)
+    other = next((item for item in salts if item is not bisulfate), None)
+    if bisulfate is None or other is None or other.anion is None or other.cation is None or bisulfate.cation is None:
+        return []
+    sulfate = catalog.salt(bisulfate.cation.formula, bisulfate.cation.charge, "SO4")
+    if other.cation.formula == "Ba" and other.anion.formula in {"Cl", "NO3"} and sulfate:
+        halide = catalog.salt(bisulfate.cation.formula, bisulfate.cation.charge, other.anion.formula)
+        acid = {"Cl": "HCl", "NO3": "HNO3"}.get(other.anion.formula)
+        if halide and acid:
+            return [["BaSO4", halide, acid]]
+    if other.anion.formula in {"HCO3", "CO3"} and sulfate:
+        return [[sulfate, "CO2", "H2O"]]
+    return []
+
+
+def build_peroxide_oxidant(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    if not any(item.formula == "H2O2" for item in species):
+        return []
+    formulas = {item.formula for item in species}
+    if "SO2" in formulas:
+        return [["H2SO4"]]
+    if "H2S" in formulas:
+        return [["S", "H2O"]]
+    iron = next((item for item in species if item.cation and item.cation.formula == "Fe" and item.cation.charge == 2 and item.anion), None)
+    if iron and iron.anion and any(item.kind == "acid" for item in species):
+        high = catalog.salt("Fe", 3, iron.anion.formula)
+        if high:
+            return [[high, "H2O"]]
+    iodide = next((item for item in species if item.anion and item.anion.formula == "I" and item.cation), None)
+    acid = _pick(species, "acid")
+    if iodide and iodide.cation and acid and acid.anion:
+        halogen = "I2"
+        salt = catalog.salt(iodide.cation.formula, iodide.cation.charge, acid.anion.formula)
+        if salt:
+            return [[halogen, salt, "H2O"]]
+    return []
+
+
+def build_halide_phosphoric(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    acid = _pick(species, "acid")
+    salt = _pick(species, "salt")
+    if acid is None or salt is None or acid.formula != "H3PO4" or salt.anion is None or salt.cation is None:
+        return []
+    if salt.anion.formula not in {"Cl", "Br", "I"}:
+        return []
+    hydrogen = {"Cl": "HCl", "Br": "HBr", "I": "HI"}[salt.anion.formula]
+    phosphate = catalog.salt(salt.cation.formula, salt.cation.charge, "H2PO4")
+    return [[phosphate, hydrogen]] if phosphate else []
+
+
+def build_nitrate_sulfuric(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    salt = _pick(species, "salt")
+    if salt is None or salt.anion is None or salt.anion.formula != "NO3" or salt.cation is None:
+        return []
+    if not any(item.formula == "H2SO4" for item in species):
+        return []
+    bisulfate = catalog.salt(salt.cation.formula, salt.cation.charge, "HSO4")
+    sulfate = catalog.salt(salt.cation.formula, salt.cation.charge, "SO4")
+    sulfate_species = catalog.get(sulfate) if sulfate else None
+    if sulfate and sulfate_species and sulfate_species.solubility == "khong_tan":
+        return [[sulfate, "HNO3"]]
+    return [[bisulfate, "HNO3"]] if bisulfate else []
+
+
+def build_iodide_reduction(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    if not any(item.formula == "HI" for item in species):
+        return []
+    other = next((item for item in species if item.formula != "HI"), None)
+    if other is None:
+        return []
+    metal = other.element or (other.cation.formula if other.cation else None)
+    if metal == "Fe":
+        iodide = catalog.salt("Fe", 2, "I")
+        return [[iodide, "I2", "H2O"]] if iodide else []
+    if metal == "Cu" or other.formula == "CuO":
+        iodide = "CuI" if "CuI" in catalog.compounds else catalog.salt("Cu", 1, "I")
+        return [[iodide, "I2", "H2O"]] if iodide else []
+    return []
+
+
+def build_complex_acid(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    acid = _pick(species, "acid")
+    compound = next((item for item in species if item is not acid), None)
+    if acid is None or compound is None or acid.formula not in {"HCl", "H2SO4", "HNO3"} or acid.anion is None:
+        return []
+    composition = compound.composition
+    metal = next((element for element in ("Al", "Zn", "Cr", "Be", "Sn", "Pb") if element in composition), None)
+    alkali = next((element for element in ("Na", "K") if element in composition), None)
+    if metal is None or alkali is None:
+        return []
+    valence = _valence_choice(catalog, metal, "high") or 3
+    hydroxide = catalog.salt(metal, valence, "OH")
+    salt = catalog.salt(alkali, 1, acid.anion.formula)
+    if hydroxide and salt:
+        return [[hydroxide, salt, "H2O"], [hydroxide, salt]]
+    return []
+
+
+def build_silicate_co2(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if "CO2" in formulas and "H2O" in formulas and formulas & {"Na2SiO3", "K2SiO3"}:
+        alkali = "Na2CO3" if "Na2SiO3" in formulas else "K2CO3"
+        return [["H2SiO3", alkali]]
+    return []
+
+
+def build_silica_carbonate(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if "SiO2" in formulas and "Na2CO3" in formulas:
+        return [["Na2SiO3", "CO2"]]
+    if "SiO2" in formulas and "K2CO3" in formulas:
+        return [["K2SiO3", "CO2"]]
+    return []
+
+
+def build_phosphide_water(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    compound = next((item for item in species if item.formula != "H2O"), None)
+    if compound is None or "P" not in compound.composition or len(compound.composition) != 2:
+        return []
+    metal = next(element for element in compound.composition if element != "P")
+    if not _element_is_metal(catalog, metal):
+        return []
+    valence = _valence_choice(catalog, metal, "low") or _valence_choice(catalog, metal, "high")
+    hydroxide = catalog.salt(metal, valence, "OH") if valence else None
+    return [[hydroxide, "PH3"]] if hydroxide else []
+
+
+def build_peroxide_acid(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    acid = _pick(species, "acid")
+    other = next((item for item in species if item is not acid), None)
+    if acid is None or other is None or acid.formula != "H2SO4" or acid.anion is None:
+        return []
+    if other.formula == "BaO2":
+        return [["BaSO4", "H2O2"]]
+    if other.cation and other.formula in {"Na2O2", "K2O2"}:
+        sulfate = catalog.salt(other.cation.formula, other.cation.charge, "SO4")
+        return [[sulfate, "H2O2"]] if sulfate else []
+    return []
+
+
+def build_halogen_nitric(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    table = {"Cl2": "HClO3", "Br2": "HBrO3", "I2": "HIO3"}
+    for halogen, acid in table.items():
+        if formulas == {halogen, "HNO3"}:
+            return [[acid, "NO2", "H2O"]]
+    return []
+
+
+def build_cyanide_complex(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    """Muối kim loại chuyển vị với KCN hoặc KSCN nếu phức đã có trong từ điển chất."""
+    ligand_salt = next((item for item in species if item.anion and item.anion.formula in {"CN", "SCN"} and item.cation), None)
+    metal_salt = next((item for item in species if item is not ligand_salt and item.cation and item.anion), None)
+    if ligand_salt is None or metal_salt is None or ligand_salt.cation is None or metal_salt.cation is None:
+        return []
+    metal = metal_salt.cation.formula
+    alkali = ligand_salt.cation.formula
+    ligand = ligand_salt.anion.formula
+    found = []
+    for candidate in catalog.species.values():
+        elements = set(candidate.composition)
+        if metal in elements and ligand[0] in elements and elements <= {metal, alkali, "C", "N", "S", "Fe"}:
+            found.append(candidate.formula)
+    if not found:
+        return []
+    complex_formula = sorted(found, key=len)[0]
+    partner = catalog.salt(alkali, ligand_salt.cation.charge, metal_salt.anion.formula)
+    if partner:
+        return [[complex_formula, partner]]
+    return [[complex_formula]]
+
+
+def build_complex_carbon_dioxide(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    compound = next((item for item in species if "Al" in item.composition and "Na" in item.composition), None)
+    if compound is None or not any(item.formula == "CO2" for item in species):
+        return []
+    hydroxide = catalog.salt("Al", 3, "OH")
+    return [[hydroxide, "NaHCO3"]] if hydroxide else []
+
+
+def build_iron_silver(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    iron = next((item for item in species if item.cation and item.cation.formula == "Fe" and item.cation.charge == 2), None)
+    silver = next((item for item in species if item.cation and item.cation.formula == "Ag"), None)
+    if iron is None or silver is None or iron.anion is None:
+        return []
+    oxidized = catalog.salt("Fe", 3, iron.anion.formula)
+    return [[oxidized, "Ag"]] if oxidized else []
+
+
+def build_so2_no2(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"SO2", "NO2", "H2O"}:
+        return [["H2SO4", "NO"]]
+    return []
+
+
+def build_hydride_burn(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    table = {"PH3": "P2O5", "AsH3": "As2O3", "SbH3": "Sb2O3", "H2Se": "SeO2", "H2Te": "TeO2"}
+    hydride = next((item for item in species if item.formula in table), None)
+    if hydride is None or not any(item.formula == "O2" for item in species):
+        return []
+    return [[table[hydride.formula], "H2O"]]
+
+
+def build_phosphorus_water(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"P", "H2O"}:
+        return [["H3PO3", "H2"]]
+    return []
+
+
+def build_phosphorus_halide(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"PCl3", "Cl2"}:
+        return [["PCl5"]]
+    if formulas == {"PBr3", "Br2"}:
+        return [["PBr5"]]
+    return []
+
+
+def build_ammonia_oxide(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"NH3", "CuO"}:
+        return [["Cu", "N2", "H2O"]]
+    return []
+
+
+def build_dichromate_redox(species: list[Species], catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if "K2Cr2O7" not in formulas or "H2SO4" not in formulas:
+        return []
+    if "SO2" in formulas:
+        return [["Cr2(SO4)3", "K2SO4", "H2O"]]
+    iron = next((item for item in species if item.cation and item.cation.formula == "Fe" and item.cation.charge == 2), None)
+    if iron and iron.anion and iron.anion.formula == "SO4":
+        oxidized = catalog.salt("Fe", 3, "SO4")
+        if oxidized:
+            return [[oxidized, "Cr2(SO4)3", "K2SO4", "H2O"]]
+    return []
+
+
+def build_fluorine_water(species: list[Species], _catalog: Catalog, _args: dict, _condition: str) -> list[list[str]]:
+    formulas = {item.formula for item in species}
+    if formulas == {"F2", "H2O"}:
+        return [["HF", "O2"]]
+    return []
 
 
 BUILDERS = {
@@ -1256,6 +1693,33 @@ BUILDERS = {
     "hx_oxygen": build_hx_oxygen,
     "halide_hydrolysis": build_halide_hydrolysis,
     "peroxide_reaction": build_peroxide_reaction,
+    "phosphate_acid": build_phosphate_acid,
+    "chromate_equilibrium": build_chromate_equilibrium,
+    "chlorate_acid": build_chlorate_acid,
+    "so2_oxidation": build_so2_oxidation,
+    "ammonia_burn": build_ammonia_burn,
+    "salt_hydrolysis": build_salt_hydrolysis,
+    "bisulfate": build_bisulfate,
+    "peroxide_oxidant": build_peroxide_oxidant,
+    "fluorine_water": build_fluorine_water,
+    "halide_phosphoric": build_halide_phosphoric,
+    "nitrate_sulfuric": build_nitrate_sulfuric,
+    "iodide_reduction": build_iodide_reduction,
+    "complex_acid": build_complex_acid,
+    "silicate_co2": build_silicate_co2,
+    "silica_carbonate": build_silica_carbonate,
+    "phosphide_water": build_phosphide_water,
+    "peroxide_acid": build_peroxide_acid,
+    "halogen_nitric": build_halogen_nitric,
+    "cyanide_complex": build_cyanide_complex,
+    "complex_carbon_dioxide": build_complex_carbon_dioxide,
+    "iron_silver": build_iron_silver,
+    "so2_no2": build_so2_no2,
+    "hydride_burn": build_hydride_burn,
+    "phosphorus_water": build_phosphorus_water,
+    "phosphorus_halide": build_phosphorus_halide,
+    "ammonia_oxide": build_ammonia_oxide,
+    "dichromate_redox": build_dichromate_redox,
     "carbon_gases": build_carbon_gases,
     "lab_chlorine": build_lab_chlorine,
     "electrolysis_aqueous": build_electrolysis_aqueous,
@@ -1325,6 +1789,8 @@ def propose(
                 products = _collapse(products)
                 if not products or sorted(products) == sorted(reactant_formulas):
                     continue
+                if set(products) & set(reactant_formulas):
+                    continue
                 signature = reaction_signature(reactant_formulas, products, condition)
                 if signature in rejected or signature in found:
                     continue
@@ -1336,13 +1802,27 @@ def propose(
     return list(found.values())
 
 
+def primary_candidate(candidates: list[dict]) -> dict | None:
+    """Một bộ sản phẩm: ưu tiên luật cao hơn, rồi ít chất sản phẩm hơn, rồi thứ tự công thức."""
+    if not candidates:
+        return None
+    return max(
+        candidates,
+        key=lambda item: (
+            int(item.get("priority") or 0),
+            -len(item["products"]),
+            tuple(sorted(item["products"])),
+        ),
+    )
+
+
 def reaction_signature(reactants: list[str], products: list[str], condition: str) -> tuple:
     return (condition or "NONE", tuple(sorted(reactants)), tuple(sorted(products)))
 
 
 def _record(rule: dict, reactants: list[str], balanced: dict, condition: str) -> dict:
     reaction_type = rule.get("type") or "khac"
-    return {
+    record = {
         "id": rule["id"],
         "rule_id": rule["id"],
         "rule_text": f"{rule.get('if_text', '')} → {rule.get('then_text', '')}",
@@ -1354,6 +1834,10 @@ def _record(rule: dict, reactants: list[str], balanced: dict, condition: str) ->
         "condition": condition or "NONE",
         "priority": int(rule.get("priority") or 0),
     }
+    symbol = ((rule.get("generate") or {}).get("args") or {}).get("symbol")
+    if symbol:
+        record["condition_symbol"] = symbol
+    return record
 
 
 def generate_pool_reactions(

@@ -7,7 +7,9 @@ một phản ứng đã có trong bộ tham chiếu hay chưa.
 
 from __future__ import annotations
 
+import fcntl
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 from app.core.forward import reaction_signature
@@ -104,20 +106,42 @@ class ReviewStore:
     def reject(self, review_id: str, note: str, rule_fault: bool) -> dict:
         return self._decide(review_id, "rejected", note, rule_fault)
 
-    def _decide(self, review_id: str, status: str, note: str, rule_fault: bool) -> dict:
+    def reopen(self, review_id: str, note: str) -> dict:
         item = self.get(review_id)
-        if item["status"] == "rejected" and status == "pending":
-            raise KnowledgeError("Phản ứng đã bị từ chối không được đưa lại vào hàng chờ.")
-        item["status"] = status
+        if item["status"] != "rejected":
+            raise KnowledgeError("Chỉ mở lại được phản ứng đang ở trạng thái từ chối.")
+        self._remember(item, "reopen", note)
+        item["status"] = "pending"
         item["note"] = str(note or "").strip()
-        item["rule_fault"] = bool(rule_fault) and status == "rejected"
-        if not item["rule_fault"]:
-            item["rule_fault"] = False
         self._save()
         return item
 
+    def _decide(self, review_id: str, status: str, note: str, rule_fault: bool) -> dict:
+        item = self.get(review_id)
+        if item["status"] == "rejected":
+            raise KnowledgeError("Phản ứng đã bị từ chối chỉ được mở lại bằng thao tác reopen.")
+        item["status"] = status
+        item["note"] = str(note or "").strip()
+        if status == "rejected":
+            item["rule_fault"] = bool(rule_fault)
+        self._remember(item, status, note)
+        self._save()
+        return item
+
+    @staticmethod
+    def _remember(item: dict, action: str, note: str) -> None:
+        history = item.setdefault("history", [])
+        history.append(
+            {
+                "action": action,
+                "note": str(note or "").strip(),
+                "rule_fault": bool(item.get("rule_fault")),
+                "at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            }
+        )
+
     def _append(self, reaction: dict, status: str, source: str, save: bool = True) -> dict:
-        review_id = f"RV{len(self.items) + 1:04d}"
+        review_id = f"RV{len(self.items) + 1:05d}"
         item = {
             "id": review_id,
             "status": status,
@@ -140,5 +164,13 @@ class ReviewStore:
 
     def _save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {"items": self.items}
-        self.path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        payload = json.dumps({"items": self.items}, ensure_ascii=False, indent=2)
+        with self.path.open("a+", encoding="utf-8") as handle:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+            try:
+                handle.seek(0)
+                handle.truncate()
+                handle.write(payload)
+                handle.flush()
+            finally:
+                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)

@@ -1,0 +1,578 @@
+[
+  {
+    "condition": "NONE",
+    "reactants": [
+      "KO2",
+      "H2O"
+    ],
+    "products": [
+      "KOH",
+      "O2"
+    ],
+    "coefficients": [
+      4,
+      2,
+      4,
+      3
+    ],
+    "rule_id": "L50",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "Ag",
+      "I2"
+    ],
+    "products": [
+      "AgI"
+    ],
+    "coefficients": [
+      2,
+      1,
+      2
+    ],
+    "rule_id": "L19",
+    "symbol": "t°"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "ZnCO3",
+      "NH3",
+      "H2O"
+    ],
+    "products": [
+      "Zn(OH)2",
+      "(NH4)2CO3"
+    ],
+    "coefficients": [
+      1,
+      2,
+      2,
+      1,
+      1
+    ],
+    "rule_id": "L57",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "H2SO4",
+      "CaS"
+    ],
+    "products": [
+      "H2S",
+      "CaSO4"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "Zn(HCO3)2",
+      "KOH"
+    ],
+    "products": [
+      "K2ZnO2",
+      "KHCO3",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      4,
+      1,
+      2,
+      2
+    ],
+    "rule_id": "L44",
+    "symbol": "t°"
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "KMnO4"
+    ],
+    "products": [
+      "K2MnO4",
+      "MnO2",
+      "O2"
+    ],
+    "coefficients": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L27",
+    "symbol": "t°"
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "SO2",
+      "NaOH"
+    ],
+    "products": [
+      "Na2SO3",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      2,
+      1,
+      1
+    ],
+    "rule_id": "L4",
+    "symbol": "t°"
+  },
+  {
+    "condition": "DILUTE",
+    "reactants": [
+      "BaO",
+      "H2S"
+    ],
+    "products": [
+      "BaS",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L3",
+    "symbol": "loãng"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "ZnBr2",
+      "Ba(OH)2"
+    ],
+    "products": [
+      "Zn(OH)2",
+      "BaBr2"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L12",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "HCl",
+      "CuS"
+    ],
+    "products": [
+      "H2S",
+      "CuCl2"
+    ],
+    "coefficients": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": "t°"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "HCl",
+      "Pb(NO3)2"
+    ],
+    "products": [
+      "HNO3",
+      "PbCl2"
+    ],
+    "coefficients": [
+      2,
+      1,
+      2,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "HNO3",
+      "NH4HCO3"
+    ],
+    "products": [
+      "CO2",
+      "H2O",
+      "NH4NO3"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "Fe(NO3)2",
+      "Ba(OH)2"
+    ],
+    "products": [
+      "Fe(OH)2",
+      "Ba(NO3)2"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L12",
+    "symbol": "t°"
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "H2CO3",
+      "Li2SO4"
+    ],
+    "products": [
+      "H2SO4",
+      "Li2CO3"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": "t°"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "Pb",
+      "HCl"
+    ],
+    "products": [
+      "PbCl2",
+      "H2"
+    ],
+    "coefficients": [
+      1,
+      2,
+      1,
+      1
+    ],
+    "rule_id": "L7",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "Na2SO3",
+      "BaCl2"
+    ],
+    "products": [
+      "NaCl",
+      "BaSO3"
+    ],
+    "coefficients": [
+      1,
+      1,
+      2,
+      1
+    ],
+    "rule_id": "L15",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "H2CrO4",
+      "Na2CO3"
+    ],
+    "products": [
+      "CO2",
+      "H2O",
+      "Na2CrO4"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": "t°"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "H2SO3",
+      "BaSO4"
+    ],
+    "products": [
+      "H2SO4",
+      "BaSO3"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "H2SO4",
+      "ZnS"
+    ],
+    "products": [
+      "H2S",
+      "ZnSO4"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": "t°"
+  },
+  {
+    "condition": "DILUTE",
+    "reactants": [
+      "BaO",
+      "H3PO4"
+    ],
+    "products": [
+      "Ba3(PO4)2",
+      "H2O"
+    ],
+    "coefficients": [
+      3,
+      2,
+      1,
+      3
+    ],
+    "rule_id": "L3",
+    "symbol": "loãng"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "HNO3",
+      "Na2CO3"
+    ],
+    "products": [
+      "CO2",
+      "H2O",
+      "NaNO3"
+    ],
+    "coefficients": [
+      2,
+      1,
+      1,
+      1,
+      2
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "KH2PO4",
+      "KOH"
+    ],
+    "products": [
+      "K2HPO4",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L12b",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "H2SO4",
+      "CaCO3"
+    ],
+    "products": [
+      "Ca(HCO3)2",
+      "CaSO4"
+    ],
+    "coefficients": [
+      1,
+      2,
+      1,
+      1
+    ],
+    "rule_id": "L10b",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT_CATALYST",
+    "reactants": [
+      "NH3",
+      "O2"
+    ],
+    "products": [
+      "NO",
+      "H2O"
+    ],
+    "coefficients": [
+      4,
+      5,
+      4,
+      6
+    ],
+    "rule_id": "L47",
+    "symbol": "t°, xúc tác"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "Cr2O3",
+      "HCl"
+    ],
+    "products": [
+      "CrCl3",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      6,
+      2,
+      3
+    ],
+    "rule_id": "L3",
+    "symbol": ""
+  },
+  {
+    "condition": "HEAT",
+    "reactants": [
+      "ZnO",
+      "CO2"
+    ],
+    "products": [
+      "ZnCO3"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L5",
+    "symbol": "t°"
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "SO3",
+      "Ca(OH)2"
+    ],
+    "products": [
+      "CaSO4",
+      "H2O"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L4",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "K2Cr2O7",
+      "Na2SO4"
+    ],
+    "products": [
+      "K2SO4",
+      "Na2Cr2O7"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L15",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "AlCl3",
+      "Ba(OH)2"
+    ],
+    "products": [
+      "Al(OH)3",
+      "BaCl2"
+    ],
+    "coefficients": [
+      2,
+      3,
+      2,
+      3
+    ],
+    "rule_id": "L12",
+    "symbol": ""
+  },
+  {
+    "condition": "NONE",
+    "reactants": [
+      "HCl",
+      "NaNO2"
+    ],
+    "products": [
+      "HNO2",
+      "NaCl"
+    ],
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "rule_id": "L10",
+    "symbol": ""
+  }
+]

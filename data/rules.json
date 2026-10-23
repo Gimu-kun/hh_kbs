@@ -538,7 +538,8 @@
         "conditions": [
           "NONE",
           "HEAT",
-          "DILUTE"
+          "DILUTE",
+          "OTHER"
         ],
         "search_conditions": [
           "NONE",
@@ -1088,8 +1089,10 @@
         "builder": "nonmetal_oxidation",
         "slots": [
           {
-            "kind_any": [
-              "nonmetal"
+            "formula_any": [
+              "C",
+              "S",
+              "P"
             ]
           },
           {
@@ -1953,7 +1956,7 @@
       "if_text": "Muối tan của Al, Zn, Cr, Be, Sn, Pb tác dụng với kiềm dư",
       "then_text": "Muối phức và muối của cation kiềm",
       "type": "trao_doi",
-      "priority": 21,
+      "priority": 12,
       "generate": {
         "builder": "amphoteric_salt",
         "slots": [
@@ -2068,7 +2071,6 @@
         ],
         "conditions": [
           "HEAT_CATALYST",
-          "HEAT",
           "CATALYST"
         ],
         "args": {
@@ -2282,6 +2284,840 @@
             ]
           ]
         }
+      }
+    },
+    {
+      "id": "L52",
+      "group": "Phản ứng của muối",
+      "if_text": "Axit mạnh proton hóa muối photphat tới đihiđrophotphat",
+      "then_text": "Muối đihiđrophotphat và muối của axit mạnh",
+      "type": "trao_doi",
+      "priority": 24,
+      "generate": {
+        "builder": "phosphate_acid",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "PO4",
+              "HPO4"
+            ]
+          },
+          {
+            "formula_any": [
+              "HCl",
+              "HBr",
+              "HI",
+              "HNO3",
+              "H2SO4"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE",
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L53",
+      "group": "Cân bằng cromat",
+      "if_text": "Cromat trong axit chuyển thành đicromat; đicromat trong kiềm chuyển thành cromat",
+      "then_text": "Muối cromat hoặc đicromat và nước",
+      "type": "trao_doi",
+      "priority": 36,
+      "generate": {
+        "builder": "chromate_equilibrium",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "CrO4",
+              "Cr2O7"
+            ]
+          },
+          {
+            "kind_any": [
+              "acid",
+              "base"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L54",
+      "group": "Phản ứng của muối",
+      "if_text": "Clorat oxi hóa HCl thành clo",
+      "then_text": "Clorua, clo và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 36,
+      "generate": {
+        "builder": "chlorate_acid",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "ClO3"
+            ]
+          },
+          {
+            "formula_any": [
+              "HCl"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE",
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L55",
+      "group": "Phản ứng của oxit axit",
+      "if_text": "SO2 bị oxi hóa thành SO3 khi có V2O5 và nhiệt",
+      "then_text": "SO3",
+      "type": "oxi_hoa_khu",
+      "priority": 30,
+      "generate": {
+        "builder": "so2_oxidation",
+        "slots": [
+          {
+            "formula_any": [
+              "SO2"
+            ]
+          },
+          {
+            "formula_any": [
+              "O2"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT_CATALYST",
+          "HEAT"
+        ],
+        "args": {
+          "symbol": "V2O5, t°"
+        },
+        "search_conditions": [
+          "HEAT_CATALYST"
+        ]
+      }
+    },
+    {
+      "id": "L56",
+      "group": "Phản ứng của bazơ",
+      "if_text": "Amoniac cháy trong oxi khi không có xúc tác",
+      "then_text": "Nitơ và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 27,
+      "generate": {
+        "builder": "ammonia_burn",
+        "slots": [
+          {
+            "formula_any": [
+              "NH3"
+            ]
+          },
+          {
+            "formula_any": [
+              "O2"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT",
+          "NONE"
+        ],
+        "search_conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L57",
+      "group": "Phản ứng của muối",
+      "if_text": "Muối của Al, Fe(III), Cr(III) bị thủy phân với cacbonat, sunfua hoặc amoniac",
+      "then_text": "Hiđroxit, khí và muối của cation kia",
+      "type": "trao_doi",
+      "priority": 26,
+      "generate": {
+        "builder": "salt_hydrolysis",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ]
+          },
+          {
+            "formula_any": [
+              "Na2CO3",
+              "K2CO3",
+              "Na2S",
+              "K2S",
+              "NH3"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L58",
+      "group": "Phản ứng của muối",
+      "if_text": "Hiđrosunfat đẩy BaSO4 hoặc phân hủy cacbonat",
+      "then_text": "BaSO4 và axit, hoặc sunfat, CO2 và nước",
+      "type": "trao_doi",
+      "priority": 27,
+      "generate": {
+        "builder": "bisulfate",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "HSO4"
+            ]
+          },
+          {
+            "kind_any": [
+              "salt"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L59",
+      "group": "Phản ứng của peoxit",
+      "if_text": "H2O2 oxi hóa Fe(II), SO2, H2S hoặc iodua",
+      "then_text": "Sản phẩm oxi hóa và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 28,
+      "generate": {
+        "builder": "peroxide_oxidant",
+        "slots": [
+          {
+            "formula_any": [
+              "H2O2"
+            ]
+          },
+          {
+            "formula_any": [
+              "SO2",
+              "H2S"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L59b",
+      "group": "Phản ứng của peoxit",
+      "if_text": "H2O2 trong môi trường axit oxi hóa Fe(II) hoặc iodua",
+      "then_text": "Muối hóa trị cao hoặc iot, và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 28,
+      "generate": {
+        "builder": "peroxide_oxidant",
+        "slots": [
+          {
+            "formula_any": [
+              "H2O2"
+            ]
+          },
+          {
+            "kind_any": [
+              "salt"
+            ]
+          },
+          {
+            "kind_any": [
+              "acid"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L61",
+      "group": "Phản ứng của muối",
+      "if_text": "H3PO4 đặc nóng đẩy hiđro halogenua và tạo đihiđrophotphat",
+      "then_text": "Muối đihiđrophotphat và HX",
+      "type": "trao_doi",
+      "priority": 30,
+      "generate": {
+        "builder": "halide_phosphoric",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "Cl",
+              "Br",
+              "I"
+            ]
+          },
+          {
+            "formula_any": [
+              "H3PO4"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L62",
+      "group": "Phản ứng của muối",
+      "if_text": "H2SO4 đặc đẩy HNO3 khỏi nitrat rắn",
+      "then_text": "Hiđrosunfat và HNO3",
+      "type": "trao_doi",
+      "priority": 30,
+      "generate": {
+        "builder": "nitrate_sulfuric",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "NO3"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2SO4"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT",
+          "CONC_HEAT",
+          "CONC"
+        ]
+      }
+    },
+    {
+      "id": "L63",
+      "group": "Phản ứng của axit",
+      "if_text": "HI khử Fe(III) hoặc CuO về hóa trị thấp và sinh iot",
+      "then_text": "Iodua hóa trị thấp, iot và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 32,
+      "generate": {
+        "builder": "iodide_reduction",
+        "slots": [
+          {
+            "formula_any": [
+              "HI"
+            ]
+          },
+          {
+            "kind_any": [
+              "oxide",
+              "base",
+              "salt"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE",
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L64",
+      "group": "Phản ứng của muối",
+      "if_text": "Axit phân hủy aluminat, zincat hoặc cromat phức thành hiđroxit",
+      "then_text": "Hiđroxit và muối của kiềm",
+      "type": "trao_doi",
+      "priority": 28,
+      "generate": {
+        "builder": "complex_acid",
+        "slots": [
+          {
+            "kind_any": [
+              "other",
+              "salt"
+            ]
+          },
+          {
+            "formula_any": [
+              "HCl",
+              "H2SO4",
+              "HNO3"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L65",
+      "group": "Phản ứng của muối",
+      "if_text": "CO2 đẩy axit silic yếu khỏi silicat",
+      "then_text": "H2SiO3 và cacbonat",
+      "type": "trao_doi",
+      "priority": 24,
+      "generate": {
+        "builder": "silicate_co2",
+        "slots": [
+          {
+            "formula_any": [
+              "Na2SiO3",
+              "K2SiO3"
+            ]
+          },
+          {
+            "formula_any": [
+              "CO2"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L66",
+      "group": "Phản ứng của oxit",
+      "if_text": "SiO2 đẩy CO2 khỏi cacbonat khi nung",
+      "then_text": "Silicat và CO2",
+      "type": "trao_doi",
+      "priority": 24,
+      "generate": {
+        "builder": "silica_carbonate",
+        "slots": [
+          {
+            "formula_any": [
+              "SiO2"
+            ]
+          },
+          {
+            "formula_any": [
+              "Na2CO3",
+              "K2CO3"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L67",
+      "group": "Phản ứng của hợp chất",
+      "if_text": "Photphua kim loại bị thủy phân",
+      "then_text": "Hiđroxit và photphin",
+      "type": "trao_doi",
+      "priority": 24,
+      "generate": {
+        "builder": "phosphide_water",
+        "slots": [
+          {
+            "kind_any": [
+              "salt",
+              "other"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L68",
+      "group": "Phản ứng của oxit",
+      "if_text": "Peoxit tác dụng với H2SO4 cho nước oxi già",
+      "then_text": "Muối sunfat và H2O2",
+      "type": "trao_doi",
+      "priority": 30,
+      "generate": {
+        "builder": "peroxide_acid",
+        "slots": [
+          {
+            "formula_any": [
+              "BaO2",
+              "Na2O2",
+              "K2O2"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2SO4"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE",
+          "OTHER"
+        ]
+      }
+    },
+    {
+      "id": "L69",
+      "group": "Phản ứng của phi kim",
+      "if_text": "Halogen bị HNO3 oxi hóa thành axit halogenic",
+      "then_text": "HXO3, NO2 và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 28,
+      "generate": {
+        "builder": "halogen_nitric",
+        "slots": [
+          {
+            "formula_any": [
+              "Cl2",
+              "Br2",
+              "I2"
+            ]
+          },
+          {
+            "formula_any": [
+              "HNO3"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT",
+          "CONC_HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L70",
+      "group": "Phản ứng của muối",
+      "if_text": "Muối kim loại tạo phức với xianua hoặc thioxianat nếu phức có trong từ điển chất",
+      "then_text": "Phức và muối của cation kiềm",
+      "type": "trao_doi",
+      "priority": 22,
+      "generate": {
+        "builder": "cyanide_complex",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ]
+          },
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "anion_any": [
+              "CN",
+              "SCN"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L71",
+      "group": "Phản ứng của muối",
+      "if_text": "CO2 phân hủy aluminat thành hiđroxit",
+      "then_text": "Al(OH)3 và hiđrocacbonat",
+      "type": "trao_doi",
+      "priority": 28,
+      "generate": {
+        "builder": "complex_carbon_dioxide",
+        "slots": [
+          {
+            "kind_any": [
+              "other",
+              "salt"
+            ]
+          },
+          {
+            "formula_any": [
+              "CO2"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L72",
+      "group": "Phản ứng của muối",
+      "if_text": "Muối sắt(II) khử muối bạc",
+      "then_text": "Muối sắt(III) và bạc",
+      "type": "oxi_hoa_khu",
+      "priority": 30,
+      "generate": {
+        "builder": "iron_silver",
+        "slots": [
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "cation_any": [
+              "Fe"
+            ]
+          },
+          {
+            "kind_any": [
+              "salt"
+            ],
+            "cation_any": [
+              "Ag"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L73",
+      "group": "Phản ứng của oxit",
+      "if_text": "SO2 và NO2 trong nước tạo axit sunfuric",
+      "then_text": "H2SO4 và NO",
+      "type": "oxi_hoa_khu",
+      "priority": 28,
+      "generate": {
+        "builder": "so2_no2",
+        "slots": [
+          {
+            "formula_any": [
+              "SO2"
+            ]
+          },
+          {
+            "formula_any": [
+              "NO2"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L74",
+      "group": "Phản ứng của hợp chất",
+      "if_text": "Hiđrua phi kim cháy trong oxi",
+      "then_text": "Oxit của phi kim và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 24,
+      "generate": {
+        "builder": "hydride_burn",
+        "slots": [
+          {
+            "formula_any": [
+              "PH3",
+              "AsH3",
+              "SbH3",
+              "H2Se",
+              "H2Te"
+            ]
+          },
+          {
+            "formula_any": [
+              "O2"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L75",
+      "group": "Phản ứng của đơn chất",
+      "if_text": "Photpho tác dụng với hơi nước",
+      "then_text": "H3PO3 và hiđro",
+      "type": "oxi_hoa_khu",
+      "priority": 22,
+      "generate": {
+        "builder": "phosphorus_water",
+        "slots": [
+          {
+            "formula_any": [
+              "P"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L76",
+      "group": "Phản ứng của hợp chất",
+      "if_text": "Halogen hóa trihalogenua photpho",
+      "then_text": "Pentahalogenua",
+      "type": "hoa_hop",
+      "priority": 24,
+      "generate": {
+        "builder": "phosphorus_halide",
+        "slots": [
+          {
+            "formula_any": [
+              "PCl3",
+              "PBr3"
+            ]
+          },
+          {
+            "formula_any": [
+              "Cl2",
+              "Br2"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT",
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L77",
+      "group": "Phản ứng của hợp chất",
+      "if_text": "NH3 khử CuO",
+      "then_text": "Đồng, nitơ và nước",
+      "type": "oxi_hoa_khu",
+      "priority": 28,
+      "generate": {
+        "builder": "ammonia_oxide",
+        "slots": [
+          {
+            "formula_any": [
+              "NH3"
+            ]
+          },
+          {
+            "formula_any": [
+              "CuO"
+            ]
+          }
+        ],
+        "conditions": [
+          "HEAT"
+        ]
+      }
+    },
+    {
+      "id": "L78",
+      "group": "Phản ứng của muối",
+      "if_text": "Đicromat oxi hóa SO2 hoặc muối sắt(II) trong H2SO4",
+      "then_text": "Muối crom(III) và muối của chất khử",
+      "type": "oxi_hoa_khu",
+      "priority": 34,
+      "generate": {
+        "builder": "dichromate_redox",
+        "slots": [
+          {
+            "formula_any": [
+              "K2Cr2O7"
+            ]
+          },
+          {
+            "kind_any": [
+              "oxide",
+              "salt"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2SO4"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "id": "L60",
+      "group": "Phản ứng của phi kim",
+      "if_text": "Flo oxi hóa nước",
+      "then_text": "HF và oxi",
+      "type": "oxi_hoa_khu",
+      "priority": 30,
+      "generate": {
+        "builder": "fluorine_water",
+        "slots": [
+          {
+            "formula_any": [
+              "F2"
+            ]
+          },
+          {
+            "formula_any": [
+              "H2O"
+            ]
+          }
+        ],
+        "conditions": [
+          "NONE"
+        ]
       }
     }
   ]

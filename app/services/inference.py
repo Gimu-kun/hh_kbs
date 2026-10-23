@@ -8,7 +8,7 @@ from app.core.balancer import BalanceError, balance_formulas
 from app.core.chain_search import build_graph, edge_equation, find_chain, water_edges
 from app.core.constants import MOLAR_VOLUME_STP
 from app.core.formula import EquationError, parse_equation, parse_formula
-from app.core.forward import _kind_class, generate_pool_reactions
+from app.core.forward import _kind_class, generate_pool_reactions, reaction_signature
 from app.core.numbers import format_number, to_fraction
 from app.core.renderer import TemplateError, join_explanation, render_balance, render_chain, render_quantity
 from app.core.species import Catalog
@@ -46,7 +46,7 @@ class InferenceEngine:
             "explanation": join_explanation(steps),
         }
 
-    def chain(self, start: str, target: str, max_steps: int = 6) -> dict:
+    def chain(self, start: str, target: str, max_steps: int = 6, allow_pending: bool = False) -> dict:
         compounds = self.knowledge.compound_map()
         start = self.knowledge.resolve_formula(start.strip(), compounds, "Chất xuất phát")
         target = self.knowledge.resolve_formula(target.strip(), compounds, "Chất mục tiêu")
@@ -54,7 +54,7 @@ class InferenceEngine:
             raise KnowledgeError("Số bước tối đa phải từ 1 đến 12.")
 
         penalties, step_weight, aux_weight, h2_weight, pattern = self._search_weights()
-        reactions = self._generated_reactions()
+        reactions = self._search_reactions(allow_pending)
         pool = {item["formula"] for item in self.knowledge.reagents.list()}
         catalog = self._catalog()
 
@@ -116,8 +116,11 @@ class InferenceEngine:
             condition_label = edge.get("condition_label") or "không cần điều kiện"
             if edge.get("condition") in (None, "", "NONE"):
                 condition_label = "không cần điều kiện"
-            review = self.reviews.classify_step(edge, source="solution")
-            review_status = review.get("status") or "unknown"
+            review_status = self.reviews.status_of(edge["reactants"], edge["products"], edge.get("condition") or "NONE")
+            if review_status == "unknown":
+                review_status = "pending"
+            signature = reaction_signature(edge["reactants"], edge["products"], edge.get("condition") or "NONE")
+            review = self.reviews.by_sig.get(signature) or {}
             detailed.append(
                 {
                     "index": index,
@@ -239,6 +242,7 @@ class InferenceEngine:
     def invalidate_generation(self) -> None:
         self._pool_key = None
         self._pool_reactions = None
+        self._catalog_cache = None
 
     def _catalog(self) -> Catalog:
         if self._catalog_cache is None:
@@ -263,12 +267,26 @@ class InferenceEngine:
         conditions = self.knowledge.condition_map()
         for item in generated:
             condition = conditions.get(item.get("condition") or "NONE")
+            preset_symbol = item.get("condition_symbol") or ""
             if condition:
                 item["condition_label"] = condition["name"]
-                item["condition_symbol"] = condition.get("symbol") or ""
+                item["condition_symbol"] = preset_symbol or condition.get("symbol") or ""
         self._pool_key = key
         self._pool_reactions = generated
         return generated
+
+    def _search_reactions(self, allow_pending: bool) -> list[dict]:
+        """Chuỗi mặc định chỉ đi qua phản ứng tham chiếu hoặc đã duyệt."""
+        usable = []
+        for item in self._generated_reactions():
+            if set(item["reactants"]) & set(item["products"]):
+                continue
+            status = self.reviews.status_of(item["reactants"], item["products"], item.get("condition") or "NONE")
+            if status in {"referenced", "approved"}:
+                usable.append(item)
+            elif allow_pending and status in {"pending", "unknown"}:
+                usable.append(item)
+        return usable
 
     def _search_weights(self) -> tuple[dict[str, int], int, int, int, list[str]]:
         penalties = {"NONE": 0, "OTHER": 3}
