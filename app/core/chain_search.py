@@ -6,6 +6,7 @@ import heapq
 from collections import defaultdict
 
 from app.core.formula import format_equation
+from app.core.rules_match import class_matches
 
 # Nước là sản phẩm phụ rất phổ biến. Không dùng nước làm mắt xích trung gian,
 # trừ khi nước chính là chất mục tiêu.
@@ -16,7 +17,12 @@ def condition_penalty(code: str, penalties: dict[str, int]) -> int:
     return int(penalties.get(code, penalties.get("OTHER", 3)))
 
 
-def build_graph(reactions: list[dict], pool: set[str], penalties: dict[str, int]) -> dict[str, list[dict]]:
+def build_graph(
+    reactions: list[dict],
+    pool: set[str],
+    penalties: dict[str, int],
+    class_of=None,
+) -> dict[str, list[dict]]:
     best: dict[tuple[str, str], tuple] = {}
     for reaction in reactions:
         reactants = reaction["reactants"]
@@ -47,6 +53,9 @@ def build_graph(reactions: list[dict], pool: set[str], penalties: dict[str, int]
                 "auxiliaries": others,
                 "penalty": penalty,
                 "aux_count": len(others),
+                "rule_id": reaction.get("rule_id"),
+                "rule_text": reaction.get("rule_text") or "",
+                "from_class": class_of(main) if class_of else "",
             }
             for product in next_products:
                 key = (main, product)
@@ -57,6 +66,7 @@ def build_graph(reactions: list[dict], pool: set[str], penalties: dict[str, int]
                 edge = dict(edge_base)
                 edge["from"] = main
                 edge["to"] = product
+                edge["to_class"] = class_of(product) if class_of else ""
                 edge["byproducts"] = [item for item in products if item != product]
                 best[key] = (rank, edge)
 
@@ -66,7 +76,12 @@ def build_graph(reactions: list[dict], pool: set[str], penalties: dict[str, int]
     return graph
 
 
-def water_edges(reactions: list[dict], pool: set[str], penalties: dict[str, int]) -> dict[str, list[dict]]:
+def water_edges(
+    reactions: list[dict],
+    pool: set[str],
+    penalties: dict[str, int],
+    class_of=None,
+) -> dict[str, list[dict]]:
     """Cạnh đi tới H2O, chỉ dùng khi chất mục tiêu là nước."""
     graph: dict[str, list[dict]] = defaultdict(list)
     seen = set()
@@ -101,9 +116,40 @@ def water_edges(reactions: list[dict], pool: set[str], penalties: dict[str, int]
                     "byproducts": [item for item in reaction["products"] if item != "H2O"],
                     "penalty": condition_penalty(reaction.get("condition") or "NONE", penalties),
                     "aux_count": len(others),
+                    "rule_id": reaction.get("rule_id"),
+                    "rule_text": reaction.get("rule_text") or "",
+                    "from_class": class_of(main) if class_of else "",
+                    "to_class": class_of("H2O") if class_of else "",
                 }
             )
     return graph
+
+
+def pattern_index(compound_class: str | None, pattern: list[str] | None) -> int | None:
+    if not compound_class or not pattern:
+        return None
+    for index, name in enumerate(pattern):
+        if class_matches(compound_class, name):
+            return index
+    return None
+
+
+def h4_delta(from_class: str, to_class: str, target_class: str, pattern: list[str] | None) -> int:
+    """0 nếu bước tiến gần mẫu H4 hơn, 2 nếu xa hơn, 1 nếu không đổi hoặc không nằm trên mẫu."""
+    if not pattern:
+        return 1
+    current = pattern_index(from_class, pattern)
+    nxt = pattern_index(to_class, pattern)
+    target = pattern_index(target_class, pattern)
+    if current is None or nxt is None or target is None:
+        return 1
+    before = abs(current - target)
+    after = abs(nxt - target)
+    if after < before:
+        return 0
+    if after == before:
+        return 1
+    return 2
 
 
 def find_chain(
@@ -114,14 +160,17 @@ def find_chain(
     step_weight: int = 100,
     aux_weight: int = 1,
     extra_graph: dict[str, list[dict]] | None = None,
+    h2_weight: int = 1,
+    pattern: list[str] | None = None,
+    target_class: str = "",
 ) -> list[dict] | None:
     if start == target:
         return []
-    queue: list[tuple] = [(0, 0, 0, start, [])]
-    best = {start: (0, 0, 0)}
+    queue: list[tuple] = [(0, 0, 0, 0, start, [])]
+    best = {start: (0, 0, 0, 0)}
     while queue:
-        steps, penalty, aux_total, node, path = heapq.heappop(queue)
-        if best.get(node) != (steps, penalty, aux_total):
+        steps, penalty, aux_total, h4_total, node, path = heapq.heappop(queue)
+        if best.get(node) != (steps, penalty, aux_total, h4_total):
             continue
         if node == target:
             return path
@@ -137,17 +186,23 @@ def find_chain(
             if nxt in visited:
                 continue
             new_steps = steps + 1
-            new_penalty = penalty + edge["penalty"]
+            new_penalty = penalty + int(edge["penalty"]) * h2_weight
             new_aux = aux_total + edge["aux_count"] * aux_weight
-            rank = (new_steps, new_penalty, new_aux)
-            ranked = (new_steps * step_weight + new_penalty, new_aux, new_steps)
+            new_h4 = h4_total + h4_delta(
+                edge.get("from_class") or "",
+                edge.get("to_class") or "",
+                target_class,
+                pattern,
+            )
+            rank = (new_steps, new_penalty, new_aux, new_h4)
+            ranked = (new_steps * step_weight + new_penalty, new_aux, new_h4, new_steps)
             old = best.get(nxt)
             if old is not None:
-                old_ranked = (old[0] * step_weight + old[1], old[2], old[0])
+                old_ranked = (old[0] * step_weight + old[1], old[2], old[3], old[0])
                 if old_ranked <= ranked:
                     continue
             best[nxt] = rank
-            heapq.heappush(queue, (new_steps, new_penalty, new_aux, nxt, path + [edge]))
+            heapq.heappush(queue, (new_steps, new_penalty, new_aux, new_h4, nxt, path + [edge]))
     return None
 
 

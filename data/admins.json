@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "username": "admin",
+      "role": "admin",
+      "password_sha256": "7f10e0d1e1f8a628d463707742aa0bb64044d0d819e55049d4b19193b99d93e2",
+      "note": "Mật khẩu mặc định là hh-admin. Đổi hash SHA-256 nếu triển khai thật."
+    }
+  ]
+}

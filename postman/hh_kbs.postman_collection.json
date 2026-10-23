@@ -1,11 +1,12 @@
 {
   "info": {
     "name": "CSTT hóa vô cơ",
-    "description": "CRUD mô hình tri thức và ba API suy diễn. Đặt biến baseUrl là http://127.0.0.1:8000",
+    "description": "CRUD mô hình tri thức, suy diễn tiến từ luật, và API admin kiểm duyệt phản ứng. Đặt biến baseUrl là http://127.0.0.1:8000. Tài khoản admin mặc định: admin / hh-admin. Sau khi đăng nhập, gắn header Authorization: Bearer {{token}}.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    {"key": "baseUrl", "value": "http://127.0.0.1:8000"}
+    {"key": "baseUrl", "value": "http://127.0.0.1:8000"},
+    {"key": "token", "value": ""}
   ],
   "item": [
     {
@@ -72,6 +73,58 @@
           "raw": "{\n  \"equation\": \"Zn + HCl → ZnCl2 + H2\",\n  \"known\": {\"formula\": \"Zn\", \"kind\": \"mass\", \"value\": 13},\n  \"find\": {\"formula\": \"H2\", \"kind\": \"volume\"}\n}"
         },
         "url": "{{baseUrl}}/api/v1/solve/quantity"
+      }
+    },
+    {
+      "name": "Đăng nhập admin",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"hh-admin\"\n}"
+        },
+        "url": "{{baseUrl}}/api/v1/auth/login"
+      }
+    },
+    {
+      "name": "Phản ứng chờ duyệt",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": "{{baseUrl}}/api/v1/admin/reviews?status=pending"
+      }
+    },
+    {
+      "name": "Đồng bộ phản ứng sinh thêm",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+        "url": "{{baseUrl}}/api/v1/admin/reviews/sync"
+      }
+    },
+    {
+      "name": "Duyệt phản ứng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"note\": \"Khớp SGK\"\n}"},
+        "url": "{{baseUrl}}/api/v1/admin/reviews/RV0001/approve"
+      }
+    },
+    {
+      "name": "Từ chối phản ứng",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {"mode": "raw", "raw": "{\n  \"note\": \"Luật sinh sai sản phẩm\",\n  \"rule_fault\": true\n}"},
+        "url": "{{baseUrl}}/api/v1/admin/reviews/RV0001/reject"
       }
     }
   ]

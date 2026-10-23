@@ -8,17 +8,25 @@ from app.core.balancer import BalanceError, balance_formulas
 from app.core.chain_search import build_graph, edge_equation, find_chain, water_edges
 from app.core.constants import MOLAR_VOLUME_STP
 from app.core.formula import EquationError, parse_equation, parse_formula
+from app.core.forward import _kind_class, generate_pool_reactions
 from app.core.numbers import format_number, to_fraction
 from app.core.renderer import TemplateError, join_explanation, render_balance, render_chain, render_quantity
-from app.core.rules_match import match_rule
+from app.core.species import Catalog
 from app.core.stoichiometry import QuantityError, solve_quantity
+from app.services.auth import configure as configure_auth
 from app.services.errors import KnowledgeError
 from app.services.knowledge_base import KnowledgeBase
+from app.services.reviews import ReviewStore
 
 
 class InferenceEngine:
     def __init__(self, knowledge: KnowledgeBase):
         self.knowledge = knowledge
+        self.reviews = ReviewStore(knowledge.data_dir)
+        configure_auth(knowledge.data_dir)
+        self._catalog_cache: Catalog | None = None
+        self._pool_key: frozenset | None = None
+        self._pool_reactions: list[dict] | None = None
 
     def balance(self, equation: str) -> dict:
         try:
@@ -45,13 +53,29 @@ class InferenceEngine:
         if max_steps < 1 or max_steps > 12:
             raise KnowledgeError("Số bước tối đa phải từ 1 đến 12.")
 
-        penalties, step_weight, aux_weight = self._search_weights()
-        reactions = self._decorate_reactions()
+        penalties, step_weight, aux_weight, h2_weight, pattern = self._search_weights()
+        reactions = self._generated_reactions()
         pool = {item["formula"] for item in self.knowledge.reagents.list()}
-        # Chất xuất phát luôn được dùng, không cần nằm trong kho thuốc thử.
-        graph = build_graph(reactions, pool, penalties)
-        extra = water_edges(reactions, pool, penalties) if target == "H2O" else None
-        path = find_chain(start, target, graph, max_steps, step_weight, aux_weight, extra)
+        catalog = self._catalog()
+
+        def class_of(formula: str) -> str:
+            species = catalog.get(formula)
+            return _kind_class(species) if species else ""
+
+        graph = build_graph(reactions, pool, penalties, class_of)
+        extra = water_edges(reactions, pool, penalties, class_of) if target == "H2O" else None
+        path = find_chain(
+            start,
+            target,
+            graph,
+            max_steps,
+            step_weight,
+            aux_weight,
+            extra,
+            h2_weight,
+            pattern,
+            class_of(target),
+        )
 
         if path is None:
             rendered = {
@@ -87,14 +111,13 @@ class InferenceEngine:
                 "explanation": join_explanation(steps),
             }
 
-        rules = self.knowledge.rules.list()
-        elements = self.knowledge.element_map()
         detailed = []
         for index, edge in enumerate(path, start=1):
-            rule = match_rule(edge["from"], edge, compounds, elements, rules)
             condition_label = edge.get("condition_label") or "không cần điều kiện"
             if edge.get("condition") in (None, "", "NONE"):
                 condition_label = "không cần điều kiện"
+            review = self.reviews.classify_step(edge, source="solution")
+            review_status = review.get("status") or "unknown"
             detailed.append(
                 {
                     "index": index,
@@ -102,14 +125,20 @@ class InferenceEngine:
                     "from": edge["from"],
                     "to": edge["to"],
                     "equation": edge_equation(edge),
+                    "reactants": edge["reactants"],
+                    "products": edge["products"],
+                    "coefficients": edge["coefficients"],
                     "condition": edge.get("condition"),
                     "condition_label": condition_label,
                     "type": edge.get("type"),
                     "type_label": edge.get("type_label") or "Phản ứng",
                     "auxiliaries": edge.get("auxiliaries") or [],
                     "byproducts": edge.get("byproducts") or [],
-                    "rule_id": rule["id"] if rule else None,
-                    "rule_text": f"{rule['if_text']} → {rule['then_text']}" if rule else "",
+                    "rule_id": edge.get("rule_id"),
+                    "rule_text": edge.get("rule_text") or "",
+                    "review_status": review_status,
+                    "review_id": review.get("id"),
+                    "pending": review_status == "pending",
                 }
             )
         rendered = {
@@ -207,33 +236,60 @@ class InferenceEngine:
             "explanation": join_explanation(steps),
         }
 
-    def _decorate_reactions(self) -> list[dict]:
+    def invalidate_generation(self) -> None:
+        self._pool_key = None
+        self._pool_reactions = None
+
+    def _catalog(self) -> Catalog:
+        if self._catalog_cache is None:
+            series = []
+            for heuristic in self.knowledge.heuristics.list():
+                if heuristic.get("kind") == "activity_series":
+                    series = list(heuristic.get("series") or [])
+            self._catalog_cache = Catalog(
+                self.knowledge.compounds.list(),
+                self.knowledge.elements.list(),
+                series,
+            )
+        return self._catalog_cache
+
+    def _generated_reactions(self) -> list[dict]:
+        rejected = self.reviews.rejected_signatures()
+        key = frozenset(rejected)
+        if self._pool_reactions is not None and self._pool_key == key:
+            return self._pool_reactions
+        pool = {item["formula"] for item in self.knowledge.reagents.list()}
+        generated = generate_pool_reactions(self._catalog(), self.knowledge.rules.list(), pool, rejected)
         conditions = self.knowledge.condition_map()
-        decorated = []
-        for reaction in self.knowledge.reactions.list():
-            item = dict(reaction)
+        for item in generated:
             condition = conditions.get(item.get("condition") or "NONE")
             if condition:
                 item["condition_label"] = condition["name"]
                 item["condition_symbol"] = condition.get("symbol") or ""
-            decorated.append(item)
-        return decorated
+        self._pool_key = key
+        self._pool_reactions = generated
+        return generated
 
-    def _search_weights(self) -> tuple[dict[str, int], int, int]:
+    def _search_weights(self) -> tuple[dict[str, int], int, int, int, list[str]]:
         penalties = {"NONE": 0, "OTHER": 3}
         for condition in self.knowledge.conditions.list():
             penalties[condition["code"]] = int(condition.get("complexity") or 0)
         step_weight = 100
         aux_weight = 1
+        h2_weight = 1
+        pattern: list[str] = []
         for heuristic in self.knowledge.heuristics.list():
             if heuristic.get("kind") == "min_steps":
                 step_weight = int(heuristic.get("weight") or step_weight)
             elif heuristic.get("kind") == "aux_penalty":
                 aux_weight = int(heuristic.get("weight") or aux_weight)
             elif heuristic.get("kind") == "condition_penalty":
+                h2_weight = int(heuristic.get("weight") or h2_weight)
                 for code, value in (heuristic.get("penalties") or {}).items():
                     penalties[code] = int(value)
-        return penalties, step_weight, aux_weight
+            elif heuristic.get("kind") == "pattern":
+                pattern = list(heuristic.get("pattern") or [])
+        return penalties, step_weight, aux_weight, h2_weight, pattern
 
     def _molar_volume(self) -> Fraction:
         record = self.knowledge.formulas.get("F_VM")

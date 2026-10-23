@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Header, HTTPException, Query
 
+from app.core.audit import audit_reference
+from app.services.auth import login, user_for_token
 from app.services.errors import KnowledgeError
 from app.services.inference import InferenceEngine
 from app.services.knowledge_base import KnowledgeBase
@@ -158,3 +160,71 @@ def solve_quantity(payload: dict):
     }
     """
     return _run(lambda: engine().quantity(payload))
+
+
+def _admin(authorization: str | None = Header(None)) -> str:
+    token = ""
+    if authorization and authorization.lower().startswith("bearer "):
+        token = authorization.split(" ", 1)[1].strip()
+    username = user_for_token(token)
+    if username is None:
+        raise HTTPException(401, "Cần đăng nhập admin.")
+    return username
+
+
+@router.post("/auth/login", tags=["admin"], operation_id="admin_login")
+def admin_login(payload: dict):
+    """Đăng nhập admin. Body: {"username": "admin", "password": "hh-admin"}."""
+    return _run(lambda: login(str(payload.get("username") or ""), str(payload.get("password") or "")))
+
+
+@router.get("/admin/reviews", tags=["admin"], operation_id="list_reviews")
+def list_reviews(status: str | None = None, authorization: str | None = Header(None)):
+    """Danh sách phản ứng chờ duyệt. status: pending, approved hoặc rejected."""
+    _admin(authorization)
+    items = engine().reviews.list(status)
+    return {"count": len(items), "items": items}
+
+
+@router.post("/admin/reviews/sync", tags=["admin"], operation_id="sync_reviews")
+def sync_reviews(authorization: str | None = Header(None)):
+    """Sinh lại các phản ứng lệch bộ tham chiếu và đưa vào hàng pending."""
+    _admin(authorization)
+    current = engine()
+    report = audit_reference(
+        current.reviews.reference_items(),
+        current.knowledge.rules.list(),
+        current._catalog(),
+    )
+    added = current.reviews.record_extras(report["extras"], source="audit")
+    return {
+        "added": added,
+        "correct": report["correct"],
+        "wrong": report["wrong"],
+        "missing": report["missing"],
+        "extra": report["extra"],
+        "total": report["total"],
+        "rate": report["rate"],
+    }
+
+
+@router.post("/admin/reviews/{review_id}/approve", tags=["admin"], operation_id="approve_review")
+def approve_review(review_id: str, payload: dict | None = None, authorization: str | None = Header(None)):
+    """Duyệt phản ứng. Body: {"note": "..."}."""
+    _admin(authorization)
+    note = str((payload or {}).get("note") or "")
+    return _run(lambda: engine().reviews.approve(review_id, note))
+
+
+@router.post("/admin/reviews/{review_id}/reject", tags=["admin"], operation_id="reject_review")
+def reject_review(review_id: str, payload: dict | None = None, authorization: str | None = Header(None)):
+    """Từ chối phản ứng. Body: {"note": "...", "rule_fault": true}.
+
+    rule_fault = true khi từ chối vì luật sinh ra phản ứng sai; rule_id được giữ lại để sửa luật.
+    Phản ứng bị từ chối không được bộ suy diễn dùng lại.
+    """
+    _admin(authorization)
+    body = payload or {}
+    result = _run(lambda: engine().reviews.reject(review_id, str(body.get("note") or ""), bool(body.get("rule_fault"))))
+    engine().invalidate_generation()
+    return result
