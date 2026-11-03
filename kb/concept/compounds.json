@@ -1,0 +1,2148 @@
+{
+  "items": [
+    {
+      "formula": "H2",
+      "name": "Hiđro",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "O2",
+      "name": "Oxi",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "N2",
+      "name": "Nitơ",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "Cl2",
+      "name": "Clo",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "C",
+      "name": "Cacbon",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "C",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "S",
+      "name": "Lưu huỳnh",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "P",
+      "name": "Photpho",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "P",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Si",
+      "name": "Silic",
+      "class": "don_chat_phi_kim",
+      "class_label": "Đơn chất phi kim",
+      "composition": [
+        {
+          "element": "Si",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na",
+      "name": "Natri",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K",
+      "name": "Kali",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Mg",
+      "name": "Magiê",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ca",
+      "name": "Canxi",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ba",
+      "name": "Bari",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Al",
+      "name": "Nhôm",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Zn",
+      "name": "Kẽm",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe",
+      "name": "Sắt",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Cu",
+      "name": "Đồng",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ag",
+      "name": "Bạc",
+      "class": "don_chat_kim_loai",
+      "class_label": "Đơn chất kim loại",
+      "composition": [
+        {
+          "element": "Ag",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "H2O",
+      "name": "Nước",
+      "class": "oxit_trung_tinh",
+      "class_label": "Oxit trung tính",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "long",
+      "state_label": "Lỏng"
+    },
+    {
+      "formula": "CO",
+      "name": "Cacbon monoxit",
+      "class": "oxit_trung_tinh",
+      "class_label": "Oxit trung tính",
+      "composition": [
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "CO2",
+      "name": "Cacbon đioxit",
+      "class": "oxit_axit",
+      "class_label": "Oxit axit",
+      "composition": [
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "SO2",
+      "name": "Lưu huỳnh đioxit",
+      "class": "oxit_axit",
+      "class_label": "Oxit axit",
+      "composition": [
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "SO3",
+      "name": "Lưu huỳnh trioxit",
+      "class": "oxit_axit",
+      "class_label": "Oxit axit",
+      "composition": [
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "long",
+      "state_label": "Lỏng"
+    },
+    {
+      "formula": "P2O5",
+      "name": "Điphotpho pentaoxit",
+      "class": "oxit_axit",
+      "class_label": "Oxit axit",
+      "composition": [
+        {
+          "element": "P",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 5
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "SiO2",
+      "name": "Silic đioxit",
+      "class": "oxit_axit",
+      "class_label": "Oxit axit",
+      "composition": [
+        {
+          "element": "Si",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na2O",
+      "name": "Natri oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K2O",
+      "name": "Kali oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "MgO",
+      "name": "Magiê oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CaO",
+      "name": "Canxi oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "BaO",
+      "name": "Bari oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Al2O3",
+      "name": "Nhôm oxit",
+      "class": "oxit_luong_tinh",
+      "class_label": "Oxit lưỡng tính",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "ZnO",
+      "name": "Kẽm oxit",
+      "class": "oxit_luong_tinh",
+      "class_label": "Oxit lưỡng tính",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CuO",
+      "name": "Đồng(II) oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "FeO",
+      "name": "Sắt(II) oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe2O3",
+      "name": "Sắt(III) oxit",
+      "class": "oxit_bazo",
+      "class_label": "Oxit bazơ",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe3O4",
+      "name": "Sắt từ oxit",
+      "class": "oxit_hon_hop",
+      "class_label": "Oxit hỗn hợp",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 3
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "HCl",
+      "name": "Axit clohiđric",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 1
+        }
+      ],
+      "state": "dung_dich",
+      "state_label": "Dung dịch"
+    },
+    {
+      "formula": "H2SO4",
+      "name": "Axit sunfuric",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "long",
+      "state_label": "Lỏng"
+    },
+    {
+      "formula": "HNO3",
+      "name": "Axit nitric",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "long",
+      "state_label": "Lỏng"
+    },
+    {
+      "formula": "H3PO4",
+      "name": "Axit photphoric",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 3
+        },
+        {
+          "element": "P",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "dung_dich",
+      "state_label": "Dung dịch"
+    },
+    {
+      "formula": "H2CO3",
+      "name": "Axit cacbonic",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 2
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "dung_dich",
+      "state_label": "Dung dịch"
+    },
+    {
+      "formula": "H2SO3",
+      "name": "Axit sunfurơ",
+      "class": "axit",
+      "class_label": "Axit",
+      "composition": [
+        {
+          "element": "H",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "dung_dich",
+      "state_label": "Dung dịch"
+    },
+    {
+      "formula": "NaOH",
+      "name": "Natri hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "KOH",
+      "name": "Kali hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ca(OH)2",
+      "name": "Canxi hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ba(OH)2",
+      "name": "Bari hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Mg(OH)2",
+      "name": "Magiê hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Cu(OH)2",
+      "name": "Đồng(II) hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe(OH)2",
+      "name": "Sắt(II) hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe(OH)3",
+      "name": "Sắt(III) hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        },
+        {
+          "element": "H",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Al(OH)3",
+      "name": "Nhôm hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        },
+        {
+          "element": "H",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Zn(OH)2",
+      "name": "Kẽm hiđroxit",
+      "class": "bazo",
+      "class_label": "Bazơ",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NH3",
+      "name": "Amoniac",
+      "class": "amoniac",
+      "class_label": "Amoniac",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 3
+        }
+      ],
+      "state": "khi",
+      "state_label": "Khí"
+    },
+    {
+      "formula": "NaCl",
+      "name": "Natri clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "KCl",
+      "name": "Kali clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CaCl2",
+      "name": "Canxi clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "BaCl2",
+      "name": "Bari clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "MgCl2",
+      "name": "Magiê clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "AlCl3",
+      "name": "Nhôm clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "ZnCl2",
+      "name": "Kẽm clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "FeCl2",
+      "name": "Sắt(II) clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "FeCl3",
+      "name": "Sắt(III) clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CuCl2",
+      "name": "Đồng(II) clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "AgCl",
+      "name": "Bạc clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ag",
+          "quantity": 1
+        },
+        {
+          "element": "Cl",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na2SO4",
+      "name": "Natri sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K2SO4",
+      "name": "Kali sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CaSO4",
+      "name": "Canxi sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "BaSO4",
+      "name": "Bari sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "MgSO4",
+      "name": "Magiê sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CuSO4",
+      "name": "Đồng(II) sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "ZnSO4",
+      "name": "Kẽm sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "FeSO4",
+      "name": "Sắt(II) sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe2(SO4)3",
+      "name": "Sắt(III) sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 3
+        },
+        {
+          "element": "O",
+          "quantity": 12
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Al2(SO4)3",
+      "name": "Nhôm sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 3
+        },
+        {
+          "element": "O",
+          "quantity": 12
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NaNO3",
+      "name": "Natri nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "KNO3",
+      "name": "Kali nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ca(NO3)2",
+      "name": "Canxi nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ba(NO3)2",
+      "name": "Bari nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Mg(NO3)2",
+      "name": "Magiê nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Cu(NO3)2",
+      "name": "Đồng(II) nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "AgNO3",
+      "name": "Bạc nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ag",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe(NO3)2",
+      "name": "Sắt(II) nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Fe(NO3)3",
+      "name": "Sắt(III) nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 3
+        },
+        {
+          "element": "O",
+          "quantity": 9
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Zn(NO3)2",
+      "name": "Kẽm nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Al(NO3)3",
+      "name": "Nhôm nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Al",
+          "quantity": 1
+        },
+        {
+          "element": "N",
+          "quantity": 3
+        },
+        {
+          "element": "O",
+          "quantity": 9
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NH4NO3",
+      "name": "Amoni nitrat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 4
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na2CO3",
+      "name": "Natri cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K2CO3",
+      "name": "Kali cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 2
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CaCO3",
+      "name": "Canxi cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "BaCO3",
+      "name": "Bari cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ba",
+          "quantity": 1
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "MgCO3",
+      "name": "Magiê cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Mg",
+          "quantity": 1
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CuCO3",
+      "name": "Đồng(II) cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NaHCO3",
+      "name": "Natri hiđrocacbonat",
+      "class": "muoi_axit",
+      "class_label": "Muối axit",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 1
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ca(HCO3)2",
+      "name": "Canxi hiđrocacbonat",
+      "class": "muoi_axit",
+      "class_label": "Muối axit",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 2
+        },
+        {
+          "element": "C",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 6
+        }
+      ],
+      "state": "dung_dich",
+      "state_label": "Dung dịch"
+    },
+    {
+      "formula": "Na2SO3",
+      "name": "Natri sunfit",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K2SO3",
+      "name": "Kali sunfit",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CaSO3",
+      "name": "Canxi sunfit",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na3PO4",
+      "name": "Natri photphat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 3
+        },
+        {
+          "element": "P",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ca3(PO4)2",
+      "name": "Canxi photphat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ca",
+          "quantity": 3
+        },
+        {
+          "element": "P",
+          "quantity": 2
+        },
+        {
+          "element": "O",
+          "quantity": 8
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NH4Cl",
+      "name": "Amoni clorua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 1
+        },
+        {
+          "element": "H",
+          "quantity": 4
+        },
+        {
+          "element": "Cl",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "(NH4)2SO4",
+      "name": "Amoni sunfat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 8
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 4
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "(NH4)2CO3",
+      "name": "Amoni cacbonat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "N",
+          "quantity": 2
+        },
+        {
+          "element": "H",
+          "quantity": 8
+        },
+        {
+          "element": "C",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 3
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "NaAlO2",
+      "name": "Natri aluminat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 1
+        },
+        {
+          "element": "Al",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na2ZnO2",
+      "name": "Natri zicat",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "O",
+          "quantity": 2
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Na2S",
+      "name": "Natri sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Na",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "K2S",
+      "name": "Kali sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "K",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "FeS",
+      "name": "Sắt(II) sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Fe",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "CuS",
+      "name": "Đồng(II) sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Cu",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "ZnS",
+      "name": "Kẽm sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Zn",
+          "quantity": 1
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    },
+    {
+      "formula": "Ag2S",
+      "name": "Bạc sunfua",
+      "class": "muoi_trung_hoa",
+      "class_label": "Muối trung hoà",
+      "composition": [
+        {
+          "element": "Ag",
+          "quantity": 2
+        },
+        {
+          "element": "S",
+          "quantity": 1
+        }
+      ],
+      "state": "ran",
+      "state_label": "Rắn"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "constants": [
+    {
+      "id": "C_VM",
+      "name": "Thể tích mol của khí ở điều kiện tiêu chuẩn",
+      "symbol": "Vm",
+      "value": 22.4,
+      "unit": "L/mol"
+    }
+  ],
+  "items": [
+    {
+      "id": "F_MOL_MASS",
+      "name": "Khối lượng mol từ thành phần nguyên tố",
+      "variables": ["M", "composition", "atomic_mass"],
+      "applies_when": null,
+      "equation": {
+        "left": {"var": "M", "op": null, "args": [], "left": null, "right": null},
+        "right": {
+          "var": null,
+          "op": "sum_product",
+          "args": [
+            {"var": "quantity", "op": null, "args": [], "left": null, "right": null},
+            {"var": "atomic_mass", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        }
+      },
+      "units": {"M": "g/mol", "composition": null, "atomic_mass": null}
+    },
+    {
+      "id": "F_N_MASS",
+      "name": "Số mol và khối lượng",
+      "variables": ["n", "m", "M"],
+      "applies_when": null,
+      "equation": {
+        "left": {"var": "n", "op": null, "args": [], "left": null, "right": null},
+        "right": {
+          "var": null,
+          "op": "div",
+          "args": [
+            {"var": "m", "op": null, "args": [], "left": null, "right": null},
+            {"var": "M", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        }
+      },
+      "units": {"n": "mol", "m": "g", "M": "g/mol"}
+    },
+    {
+      "id": "F_N_VOLUME",
+      "name": "Số mol và thể tích khí ở đktc",
+      "variables": ["n", "V", "Vm"],
+      "applies_when": "chat_khi",
+      "equation": {
+        "left": {"var": "n", "op": null, "args": [], "left": null, "right": null},
+        "right": {
+          "var": null,
+          "op": "div",
+          "args": [
+            {"var": "V", "op": null, "args": [], "left": null, "right": null},
+            {"var": "Vm", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        }
+      },
+      "units": {"n": "mol", "V": "L", "Vm": "L/mol"}
+    },
+    {
+      "id": "F_N_CM",
+      "name": "Số mol và nồng độ mol",
+      "variables": ["n", "CM", "Vdd"],
+      "applies_when": null,
+      "equation": {
+        "left": {"var": "n", "op": null, "args": [], "left": null, "right": null},
+        "right": {
+          "var": null,
+          "op": "mul",
+          "args": [
+            {"var": "CM", "op": null, "args": [], "left": null, "right": null},
+            {"var": "Vdd", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        }
+      },
+      "units": {"n": "mol", "CM": "mol/L", "Vdd": "L"}
+    },
+    {
+      "id": "F_RATIO",
+      "name": "Tỉ lệ mol theo hệ số phương trình",
+      "variables": ["n1", "coeff1", "n2", "coeff2"],
+      "applies_when": null,
+      "equation": {
+        "left": {
+          "var": null,
+          "op": "div",
+          "args": [
+            {"var": "n1", "op": null, "args": [], "left": null, "right": null},
+            {"var": "coeff1", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "var": null,
+          "op": "div",
+          "args": [
+            {"var": "n2", "op": null, "args": [], "left": null, "right": null},
+            {"var": "coeff2", "op": null, "args": [], "left": null, "right": null}
+          ],
+          "left": null,
+          "right": null
+        }
+      },
+      "units": {"n1": "mol", "coeff1": null, "n2": "mol", "coeff2": null}
+    }
+  ]
+}

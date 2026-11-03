@@ -1,0 +1,53 @@
+{
+  "classes": [
+    {"id": "don_chat", "name": "Đơn chất", "children": ["don_chat_kim_loai", "don_chat_phi_kim"]},
+    {"id": "don_chat_kim_loai", "name": "Đơn chất kim loại", "children": []},
+    {"id": "don_chat_phi_kim", "name": "Đơn chất phi kim", "children": []},
+    {"id": "oxit", "name": "Oxit", "children": ["oxit_bazo", "oxit_axit", "oxit_luong_tinh", "oxit_trung_tinh", "oxit_hon_hop"]},
+    {"id": "oxit_bazo", "name": "Oxit bazơ", "children": []},
+    {"id": "oxit_axit", "name": "Oxit axit", "children": []},
+    {"id": "oxit_luong_tinh", "name": "Oxit lưỡng tính", "children": []},
+    {"id": "oxit_trung_tinh", "name": "Oxit trung tính", "children": []},
+    {"id": "oxit_hon_hop", "name": "Oxit hỗn hợp", "children": []},
+    {"id": "axit", "name": "Axit", "children": []},
+    {"id": "bazo", "name": "Bazơ", "children": []},
+    {"id": "muoi", "name": "Muối", "children": ["muoi_trung_hoa", "muoi_axit"]},
+    {"id": "muoi_trung_hoa", "name": "Muối trung hoà", "children": []},
+    {"id": "muoi_axit", "name": "Muối axit", "children": []},
+    {"id": "amoniac", "name": "Amoniac", "children": []}
+  ],
+  "special_class": {
+    "NH3": "amoniac",
+    "H2O": "oxit_trung_tinh"
+  },
+  "neutral_oxides": ["CO", "H2O"],
+  "acid_salt_anions": ["HCO3"],
+  "anions": [
+    {"formula": "HCO3", "charge": -1, "composition": [{"element": "H", "quantity": 1}, {"element": "C", "quantity": 1}, {"element": "O", "quantity": 3}]},
+    {"formula": "OH", "charge": -1, "composition": [{"element": "O", "quantity": 1}, {"element": "H", "quantity": 1}]},
+    {"formula": "NO3", "charge": -1, "composition": [{"element": "N", "quantity": 1}, {"element": "O", "quantity": 3}]},
+    {"formula": "SO4", "charge": -2, "composition": [{"element": "S", "quantity": 1}, {"element": "O", "quantity": 4}]},
+    {"formula": "SO3", "charge": -2, "composition": [{"element": "S", "quantity": 1}, {"element": "O", "quantity": 3}]},
+    {"formula": "CO3", "charge": -2, "composition": [{"element": "C", "quantity": 1}, {"element": "O", "quantity": 3}]},
+    {"formula": "PO4", "charge": -3, "composition": [{"element": "P", "quantity": 1}, {"element": "O", "quantity": 4}]},
+    {"formula": "AlO2", "charge": -1, "composition": [{"element": "Al", "quantity": 1}, {"element": "O", "quantity": 2}]},
+    {"formula": "ZnO2", "charge": -2, "composition": [{"element": "Zn", "quantity": 1}, {"element": "O", "quantity": 2}]},
+    {"formula": "Cl", "charge": -1, "composition": [{"element": "Cl", "quantity": 1}]},
+    {"formula": "S", "charge": -2, "composition": [{"element": "S", "quantity": 1}]}
+  ],
+  "solubility": [
+    {"id": "SOL_NA_K_NH4", "name": "Muối và bazơ của natri, kali, amoni đều tan", "when": {"cation": null, "cation_in": ["Na", "K", "NH4"], "anion": null, "anion_in": []}, "result": "tan"},
+    {"id": "SOL_NO3", "name": "Mọi nitrat đều tan", "when": {"cation": null, "cation_in": [], "anion": "NO3", "anion_in": []}, "result": "tan"},
+    {"id": "SOL_CL_AG", "name": "Bạc clorua không tan", "when": {"cation": "Ag", "cation_in": [], "anion": "Cl", "anion_in": []}, "result": "khong_tan"},
+    {"id": "SOL_CL", "name": "Clorua còn lại tan", "when": {"cation": null, "cation_in": [], "anion": "Cl", "anion_in": []}, "result": "tan"},
+    {"id": "SOL_SO4_BA", "name": "Bari sunfat không tan", "when": {"cation": "Ba", "cation_in": [], "anion": "SO4", "anion_in": []}, "result": "khong_tan"},
+    {"id": "SOL_SO4_CA", "name": "Canxi sunfat ít tan", "when": {"cation": "Ca", "cation_in": [], "anion": "SO4", "anion_in": []}, "result": "it_tan"},
+    {"id": "SOL_SO4", "name": "Sunfat còn lại tan", "when": {"cation": null, "cation_in": [], "anion": "SO4", "anion_in": []}, "result": "tan"},
+    {"id": "SOL_OH_TAN", "name": "NaOH, KOH, Ba(OH)2 tan", "when": {"cation": null, "cation_in": ["Na", "K", "Ba"], "anion": "OH", "anion_in": []}, "result": "tan"},
+    {"id": "SOL_OH_CA", "name": "Canxi hidroxit ít tan", "when": {"cation": "Ca", "cation_in": [], "anion": "OH", "anion_in": []}, "result": "it_tan"},
+    {"id": "SOL_OH", "name": "Bazơ còn lại không tan", "when": {"cation": null, "cation_in": [], "anion": "OH", "anion_in": []}, "result": "khong_tan"},
+    {"id": "SOL_HCO3", "name": "Hiđrocacbonat trong chương trình tan", "when": {"cation": null, "cation_in": [], "anion": "HCO3", "anion_in": []}, "result": "tan"},
+    {"id": "SOL_ANION_KEM", "name": "Cacbonat, sunfit, photphat, sunfua của kim loại khác không tan", "when": {"cation": null, "cation_in": [], "anion": null, "anion_in": ["CO3", "SO3", "PO4", "S"]}, "result": "khong_tan"},
+    {"id": "SOL_ALUMINAT", "name": "Aluminat và zicat tan", "when": {"cation": null, "cation_in": [], "anion": null, "anion_in": ["AlO2", "ZnO2"]}, "result": "tan"}
+  ]
+}
