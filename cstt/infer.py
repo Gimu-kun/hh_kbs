@@ -20,6 +20,12 @@ def get_kb() -> KnowledgeBase:
     return _KB
 
 
+def reload_kb() -> KnowledgeBase:
+    global _KB
+    _KB = load_kb()
+    return _KB
+
+
 def _step(steps: list[dict], direction: str, rule: str, content: str) -> None:
     steps.append({"buoc": len(steps) + 1, "chieu": direction, "luat": rule, "noi_dung": content})
 
