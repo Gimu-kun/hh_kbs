@@ -222,6 +222,59 @@ class SolveTests(unittest.TestCase):
         self.assertEqual(kb.compounds["NaAlO2"].class_id, "muoi_trung_hoa")
         self.assertEqual(kb.compounds["NH4NO3"].class_id, "muoi_trung_hoa")
 
+    def test_natural_language_uses_templates(self):
+        balance = solve({"loai": 1, "phan_ung": "Al2O3 + HCl -> AlCl3 + H2O"})
+        self.assertTrue(balance["trinh_bay"].startswith("Đầu tiên, Al2O3 thuộc lớp"))
+        self.assertIn("Tiếp theo, bảo toàn nguyên tố nhôm (Al)", balance["trinh_bay"])
+        self.assertTrue(balance["trinh_bay"].endswith("Vậy, phương trình cân bằng là Al2O3 + 6HCl → 2AlCl3 + 3H2O."))
+        self.assertNotIn("mau", balance["vet"][0])
+
+        volume = solve(
+            {
+                "loai": 3,
+                "chat_tham_gia": ["Zn", "HCl"],
+                "biet": [{"chat": "Zn", "dai_luong": "m", "gia_tri": 6.5}],
+                "tim": {"chat": "H2", "dai_luong": "V"},
+            }
+        )
+        self.assertEqual(volume["ket_qua"], "2.24")
+        self.assertIn("đề bài cho khối lượng của Zn bằng 6,5 gam.", volume["trinh_bay"])
+        self.assertTrue(volume["trinh_bay"].endswith("Vậy, thể tích khí H2 cần tìm là 2,24 lít."))
+
+        salt = solve(
+            {
+                "loai": 3,
+                "phan_ung": "Zn + HCl -> ZnCl2 + H2",
+                "biet": [{"chat": "H2", "dai_luong": "V", "gia_tri": 2.24}],
+                "tim": {"chat": "ZnCl2", "dai_luong": "m"},
+            }
+        )
+        self.assertEqual(salt["ket_qua"], "13.6")
+        self.assertIn("Vậy, khối lượng của ZnCl2 cần tìm là 13,6 gam.", salt["trinh_bay"])
+
+        closed = solve(
+            {
+                "loai": 2,
+                "chat_dau": "Cu",
+                "chat_dich": "Cu(OH)2",
+                "che_do": "cho_truoc",
+                "chat_cho_phep": ["O2", "HCl", "NaOH"],
+            }
+        )
+        self.assertNotIn("khong_tan", closed["trinh_bay"])
+        self.assertNotIn("SOL_", closed["trinh_bay"])
+        self.assertIn("dung dịch muối tác dụng với dung dịch bazơ", closed["trinh_bay"])
+
+        missing = solve({"loai": 2, "chat_dau": "Ag", "chat_dich": "Na"})
+        self.assertIn("Đầu tiên,", missing["trinh_bay"])
+        self.assertIn("Vậy, không tìm được chuỗi từ Ag đến Na", missing["trinh_bay"])
+
+        same = solve({"loai": 2, "chat_dau": "Cu", "chat_dich": "Cu"})
+        self.assertEqual(same["trinh_bay"], "Vậy, Cu đã chính là chất cần điều chế, nên không cần thêm phản ứng nào.")
+
+        rejected = solve({"loai": 1, "phan_ung": "H2O -> H2 + NaCl"})
+        self.assertTrue(rejected["trinh_bay"].endswith("không có bộ hệ số nguyên dương nào bảo toàn mọi nguyên tố."))
+
 
 if __name__ == "__main__":
     unittest.main()
